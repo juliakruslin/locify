@@ -11,5 +11,9 @@
 </div>
 
 <%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
-<%= link_to "Delete this listing", product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" %>
+<%#= link_to "Delete this listing", product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" %>
+
+<button id="delete-product" class="btn btn-danger">Delete this listing</button>
+<%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
+
 </div>
