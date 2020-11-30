@@ -1,0 +1,11 @@
+<div class="container col-8">
+  <h4 class="mt-4">Please provide some information about your product</h4>
+  <%= simple_form_for @product do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :photos, as: :file, input_html: { minlength: 1, maxlength: 5, multiple: true } %>
+  <%= f.button :submit, class: "btn-primary" %>
+  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+  <% end %>
+</div>

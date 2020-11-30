@@ -1,1 +1,20 @@
-<h1>hello</h1>
+<!-- <div class="container"> -->
+  <div class="big-container d-flex">
+    <div class="product-cards col-8 mt-4">
+      <h1 class="mb-2"><strong>Our products</strong></h1>
+      <% @products.each do |product| %>
+      <div class="card-product m-2">
+        <%= cl_image_tag product.photos.first.key %>
+        <div class="card-product-infos">
+          <h2><%= link_to product.name, product_path(product) %></h2>
+          <p> EUR <%= product.price %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="map col-4 bg-success m-0">
+      <p>here will be a map</p>
+    </div>
+  </div>
+  <!-- </div> -->
