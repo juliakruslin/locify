@@ -1,0 +1,11 @@
+<div class="big-container d-flex">
+  <h1 class="mb-2"><strong>Your Cart</strong></h1>
+      <div class="cart-info m-2">
+        <% @cart.cart_items.each do |cart_item|%>
+        <%= cart_item.product.name %>
+        <%= cart_item.product.price %>
+        <%= cart_item.amount %>
+      </div>
+    </div>
+    <% end %>
+</div>

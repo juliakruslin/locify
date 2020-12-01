@@ -16,4 +16,5 @@
 <button id="delete-product" class="btn btn-danger">Delete this listing</button>
 <%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
 
+<%= link_to "add to cart", add_to_cart_path(@product), method: :post %>
 </div>
