@@ -19,4 +19,3 @@ class User < ApplicationRecord
     "#{street_name}, #{street_number}, #{city}, #{postal_code}"
   end
 end
-
