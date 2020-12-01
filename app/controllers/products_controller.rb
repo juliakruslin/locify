@@ -1,11 +1,20 @@
 class ProductsController < ApplicationController
-skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
     if params[:query].present?
       @products = Product.global_search(params[:query])
     else
       @products = Product.all
+    end
+
+      @user = User.all.where(seller_approved: true)
+      # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+      @markers = @user.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
     end
   end
     # sql_query = "name @@ :query
