@@ -1,8 +1,16 @@
 class ProductsController < ApplicationController
-skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
     @products = Product.all
+    @user = User.all.where(seller_approved: true)
+    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+    @markers = @user.geocoded.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
+    end
   end
 
   def show
