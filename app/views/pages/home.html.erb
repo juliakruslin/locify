@@ -12,16 +12,26 @@
 </div>
 
 
-<!-- [...] -->
+<%# This is the products search bar  %>
+
+
+<%# This is the location search bar  %>
+<div class="searchbar mt-5">
 <%= form_tag products_path, method: :get do %>
-  <%= text_field_tag :query,
+  <%= text_field_tag :location,
+    params[:location],
+    class: "form-control",
+      id: "location-search",
+    placeholder: "Look for a location"
+  %>
+   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
     placeholder: "Find a product"
   %>
   <%= submit_tag "Search", class: "btn btn-outline-dark" %>
 <% end %>
-<!-- the list of movies -->
+</div>
 
 <br>
   <div class="buttons d-flex justify-content-center">

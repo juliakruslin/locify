@@ -41,7 +41,7 @@ ADDRESSES.each do |address|
     10.times do
     product = Product.create!(
       name: Faker::Commerce.product_name,
-      description: Faker::Lorem.sentences(number: 5),
+      description: Faker::Lorem.paragraph(sentence_count: 5),
       price: rand(0..500),
       user: store,
       )

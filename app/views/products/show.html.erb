@@ -6,12 +6,12 @@
 </div>
 
 <div class="product-description">
-<h2><%= @product.name %></h2>
-<h2><%= @product.inspect %></h2>
-<p><%= @product.price %></p>
-<p><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+<h2><strong><%= @product.name %></strong></h2>
+<p><strong> Seller: </strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+<p>EUR <%= @product.price %></p>
 <p><%= @product.description %></p>
-
+<i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %>
+<% raise %>
 </div>
 
 <%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
