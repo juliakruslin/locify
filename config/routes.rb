@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :products
+  resource :cart
+  post "/add_item_cart/:id", to: "carts#add_to_cart", as: "add_to_cart"
 end

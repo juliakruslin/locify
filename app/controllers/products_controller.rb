@@ -39,16 +39,9 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # @user = @product.user
+    @cart = Cart.new
     @user = User.all.where(seller_approved: true)
     map
-    # @markers = @user.geocode.map do |user| {
-    #   lat: user.latitude,
-    #   lng: user.longitude,
-    #   infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
-    #   image_url: helpers.asset_url('shop_marker')
-    # }
-    # end
   end
 
   def edit

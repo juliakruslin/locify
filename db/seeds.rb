@@ -8,6 +8,8 @@
 require 'faker'
 require "open-uri"
 
+CartItem.destroy_all
+Cart.destroy_all
 Product.destroy_all
 User.destroy_all
 
@@ -36,6 +38,15 @@ ADDRESSES.each do |address|
     seller_approved: true
   )
 
+user = User.create!(
+  email: "julia.viehbaeck@gmail.com",
+  first_name: "Julia",
+  last_name: "Viehbaeck",
+  password: "123456"
+  )
+
+p "#{Product.count} products created"
+
   puts "user printed #{store.email}"
 
     10.times do
@@ -52,4 +63,3 @@ ADDRESSES.each do |address|
     p "#{Product.count} products created"
   end
 end
-
