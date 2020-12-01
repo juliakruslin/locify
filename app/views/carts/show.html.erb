@@ -1,11 +1,14 @@
-<div class="big-container d-flex">
-  <h1 class="mb-2"><strong>Your Cart</strong></h1>
-      <div class="cart-info m-2">
-        <% @cart.cart_items.each do |cart_item|%>
-        <%= cart_item.product.name %>
-        <%= cart_item.product.price %>
-        <%= cart_item.amount %>
-      </div>
-    </div>
-    <% end %>
+<div class="container col-10 mx-auto">
+<h1><strong>Your Cart</strong></h1>
+    <% @cart.cart_items.each do |cart_item|%>
+<div class="cart-item d-flex justify-content-start">
+  <%= cl_image_tag cart_item.product.photos.first.key if cart_item.product.photos.attached? %>
+  <div class="cart-item-info">
+    <td>
+      <%= cart_item.product.name %> <%= cart_item.product.price %> <%= cart_item.amount%>x EUR <%= cart_item.price %>
+    </td>
+  </div>
+</div>
+<% end %>
+<li><%= @cart.total_price %></li>
 </div>
