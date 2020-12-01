@@ -28,6 +28,9 @@ import { initSweetalert } from '../plugins/init_sweetalert';
 import { initLightbox } from '../plugins/init_lightbox';
 
 import { loadDynamicBannerText } from '../components/banner';
+import { initMapbox } from '../plugins/init_mapbox';
+import { initAutocomplete } from '../plugins/init_autocomplete';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -36,10 +39,10 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initLightbox();
+  initMapbox();
   loadDynamicBannerText();
-});
-
-initSweetalert('#delete-product', {
+  initAutocomplete();
+  initSweetalert('#delete-product', {
   title: "Are you sure?",
   text: "This action cannot be reversed",
   icon: "warning"
@@ -49,10 +52,4 @@ initSweetalert('#delete-product', {
     link.click();
   }
 });
-
-import { initMapbox } from '../plugins/init_mapbox';
-
-document.addEventListener('turbolinks:load', () => {
-  initMapbox();
-})
-
+});

@@ -1,0 +1,21 @@
+.page-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
+.footer-container {
+  margin-top: 20px;
+  background-color: grey;
+  color: white;
+}
+
+.footer-container a {
+  margin-top: 20px;
+  background-color: grey;
+  color: white;
+}
+
+// .socials a {
+//   color: white;
+// }

@@ -1,19 +1,47 @@
+<%= video_tag "ronaldreiter.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, class: "home_video" %>
+
+
 <div class="container d-flex flex-column justify-content-center ">
+
 <!--
   <video autoplay muted loop id="myVideo">
     <source src="/app/assets/images/ronaldreiter.mp4" type="video/mp4">
-    </video>
-  -->
+    </video> -->
+
 <div class="banner mx-auto">
   <h1 class="mt-5 mb-4">
     <span id="banner-typed-text"></span>
   </h1>
   <br>
+</div>
 
+
+<%# This is the products search bar  %>
+
+
+<%# This is the location search bar  %>
+<div class="searchbar mt-5">
+<%= form_tag products_path, method: :get do %>
+  <%= text_field_tag :location,
+    params[:location],
+    class: "form-control",
+      id: "location-search",
+    placeholder: "Look for a location"
+  %>
+   <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a product"
+  %>
+  <%= submit_tag "Search", class: "btn btn-outline-dark" %>
+<% end %>
+</div>
+
+<br>
   <div class="buttons d-flex justify-content-center">
     <%= link_to "See all products", products_path, class: "btn btn-secondary" %>
     <%= link_to "Add a product", new_product_path, class: "btn btn-secondary ml-2" %>
   </div>
-  </div>
+
 </div>
 
