@@ -7,7 +7,11 @@
 
 <div class="product-description">
 <h2><%= @product.name %></h2>
+<h2><%= @product.inspect %></h2>
 <p><%= @product.price %></p>
+<p><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+<p><%= @product.description %></p>
+
 </div>
 
 <%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>

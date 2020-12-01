@@ -34,9 +34,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   loadDynamicBannerText();
-});
-
-initSweetalert('#delete-product', {
+  initSweetalert('#delete-product', {
   title: "Are you sure?",
   text: "This action cannot be reversed",
   icon: "warning"
@@ -46,4 +44,7 @@ initSweetalert('#delete-product', {
     link.click();
   }
 });
+});
+
+
 

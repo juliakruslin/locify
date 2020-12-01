@@ -2,8 +2,27 @@ class ProductsController < ApplicationController
 skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    @products = Product.all
+    if params[:query].present?
+      @products = Product.global_search(params[:query])
+    else
+      @products = Product.all
+    end
   end
+    # sql_query = "name @@ :query
+    # OR description @@ :query
+    # OR user @@ :query"
+    # @products = Product.where(sql_query, query: "%#{params[:query]}%")
+
+
+
+    # Why dont I have to say product.name?
+    # Do I need an association? The user.name + user.location can be accessed through product
+
+    # User can type in Location --> Geocoding lecture
+    # Dropdown will show potential results (Austria prioritized!)
+    # User chooses result from dropdown
+    # Navigation to specific landing page possible?
+    # Product.user.location (e.g. 5km around them will be shown)
 
   def show
     @product = Product.find(params[:id])

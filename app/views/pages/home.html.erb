@@ -9,11 +9,25 @@
     <span id="banner-typed-text"></span>
   </h1>
   <br>
+</div>
 
+
+<!-- [...] -->
+<%= form_tag products_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a product"
+  %>
+  <%= submit_tag "Search", class: "btn btn-outline-dark" %>
+<% end %>
+<!-- the list of movies -->
+
+<br>
   <div class="buttons d-flex justify-content-center">
     <%= link_to "See all products", products_path, class: "btn btn-secondary" %>
     <%= link_to "Add a product", new_product_path, class: "btn btn-secondary ml-2" %>
   </div>
-  </div>
+
 </div>
 
