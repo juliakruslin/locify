@@ -11,6 +11,5 @@ const loadDynamicBannerText = () => {
   });
   }
 }
-}
 
 export { loadDynamicBannerText };

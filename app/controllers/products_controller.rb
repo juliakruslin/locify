@@ -13,15 +13,8 @@ class ProductsController < ApplicationController
       @products = @products.where(user_id: @user_ids)
     end
 
-      @user = User.all.where(seller_approved: true)
-      # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
-      @markers = @user.geocoded.map do |user|
-      {
-        lat: user.latitude,
-        lng: user.longitude
-      }
-    end
     # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
+    map
   end
     # sql_query = "name @@ :query
     # OR description @@ :query
@@ -78,6 +71,7 @@ class ProductsController < ApplicationController
   end
 
   def map
+    @user = User.all.where(seller_approved: true)
     @markers = @user.geocoded.map do |user| {
       lat: user.latitude,
       lng: user.longitude,
