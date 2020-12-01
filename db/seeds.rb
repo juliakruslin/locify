@@ -11,26 +11,45 @@ require "open-uri"
 Product.destroy_all
 User.destroy_all
 
-user = User.create!(
-  email: "lewagon@lewagon.com",
-  first_name: "Julia",
-  last_name: "Kruslin",
-  password: "coolstuffwhatever"
+ADDRESSES = [
+  {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
+  {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
+]
+
+# user = User.create!(
+#   email: "lewagon@lewagon.com",
+#   first_name: "Julia",
+#   last_name: "Kruslin",
+#   password: "coolstuffwhatever"
+#   )
+
+ADDRESSES.each do |address|
+  store = User.create!(
+    email: Faker::Internet.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    password: "coolstuffwhatever",
+    street_name: address[:street_name],
+    street_number: address[:street_number],
+    city: address[:city],
+    postal_code: address[:postal_code],
+    seller_approved: true
   )
 
-print "user printed #{user.email}"
+  puts "user printed #{store.email}"
 
-10.times do
-  product = Product.create!(
-    name: Faker::Commerce.product_name,
-    description: Faker::Lorem.sentences(number: 5),
-    price: rand(0..500),
-    user: user,
-    )
-  5.times do
-    file = URI.open("https://source.unsplash.com/collection/3590310/300x200")
-    product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+    10.times do
+    product = Product.create!(
+      name: Faker::Commerce.product_name,
+      description: Faker::Lorem.sentences(number: 5),
+      price: rand(0..500),
+      user: store,
+      )
+    5.times do
+      file = URI.open("https://source.unsplash.com/collection/3590310/300x200")
+      product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+    end
+    p "#{Product.count} products created"
   end
 end
 
-p "#{Product.count} products created"
