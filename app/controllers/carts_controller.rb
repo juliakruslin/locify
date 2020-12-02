@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :find_create_cart
 
   def show
+    @cart_items = @cart.cart_items.order(id: :desc)
   end
 
   def add_to_cart
@@ -21,15 +22,31 @@ class CartsController < ApplicationController
     # TODO
     @cart_item = CartItem.find(params[:id])
     @cart_item.update!(cart_item_params)
-    # @cart.update!(total_price: total_price)
     redirect_to cart_path
   end
-  # code from stackover
-  # @line_item.update_attribute(:quantity)
+
+  def increase_amount
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount += 1
+    @cart_item.save
+    redirect_to cart_path(anchor: "cart-item-#{@cart_item.id}")
+  end
+
+  def decrease_amount
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount -= 1
+    if @cart_item.amount >= 1
+      @cart_item.save
+    else
+      @cart_item.destroy
+    end
+    redirect_to cart_path(anchor: "cart-item-#{@cart_item.id}")
+  end
 
   def destroy
+    @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to cart_path
+    redirect_to products_path
   end
 
   private
