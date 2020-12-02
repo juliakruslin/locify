@@ -14,14 +14,18 @@ class CartsController < ApplicationController
   end
 
   def edit
+    @cart_item = CartItem.find(params[:id])
   end
 
-  def update
+  def update_amount
     # TODO
-    # @cart.update!(cart_params)
-    # @cart.update!()
-    # redirect_to cart_path(@cart)
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update!(cart_item_params)
+    # @cart.update!(total_price: total_price)
+    redirect_to cart_path
   end
+  # code from stackover
+  # @line_item.update_attribute(:quantity)
 
   def destroy
     @cart.destroy
@@ -32,6 +36,10 @@ class CartsController < ApplicationController
 
   def cart_params
     params.require(:cart).permit(:total_price, :order_number, :status)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:amount)
   end
 
   def find_create_cart

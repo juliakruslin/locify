@@ -5,10 +5,30 @@
   <%= cl_image_tag cart_item.product.photos.first.key if cart_item.product.photos.attached? %>
   <div class="cart-item-info">
     <td>
-      <%= cart_item.product.name %> <%= cart_item.product.price %> <%= cart_item.amount%>x EUR <%= cart_item.price %>
+      <%= cart_item.product.name %> <%= cart_item.product.price %>
+      <%= simple_form_for cart_item, url: update_amount_path(cart_item), method: :patch do |f| %>
+        <%= f.input :amount %>
+        <%= f.submit "Send" %>
+      <% end %>
+      x EUR <%= cart_item.price %>
     </td>
   </div>
 </div>
 <% end %>
 <li><%= @cart.total_price %></li>
 </div>
+
+
+<!-- var quantity = 0;
+ $(document).on('click', 'quantity_down', function() {
+   quantity -= 1
+   $('cart_quantity').text(quantity);
+   $('cart_quantity').val(quantity);
+ });
+
+ $(document).on('click', 'quantity_up', function() {
+  quantity += 1;
+  $('cart_quantity').text(quantity);
+  $('cart_quantity').val(quantity);
+ });
+ -->
