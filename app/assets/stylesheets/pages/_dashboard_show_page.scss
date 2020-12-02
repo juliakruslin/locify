@@ -1,0 +1,44 @@
+.dashboard-show-content {
+  display: flex;
+  margin-top: 10px;
+}
+
+.side-bar li {
+  list-style-type: none;
+  width: 100px;
+  padding: 5px 5px;
+  border: 1px solid black;
+}
+
+.welcome-user-card {
+  background: #F1DFD5;
+  padding: 15px;
+}
+
+.welcome-user-card-info ul {
+  padding-left: 5px;
+  list-style-type: none;
+}
+
+.simple-border-card {
+  display: flex;
+  border: 1px solid black;
+  padding: 15px;
+  width: 700px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-photo-dashboard {
+  img {
+    height: 180px;
+  }
+}
+
+.user-info-card-dashboard {
+  margin-bottom: 0;
+}
+
+.info-card-dashboard {
+  font-size: 15px;
+}
