@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :find_create_cart
 
   def show
+    @cart_items = @cart.cart_items.order(id: :desc)
   end
 
   def add_to_cart
@@ -14,24 +15,48 @@ class CartsController < ApplicationController
   end
 
   def edit
+    @cart_item = CartItem.find(params[:id])
   end
 
-  def update
+  def update_amount
     # TODO
-    # @cart.update!(cart_params)
-    # @cart.update!()
-    # redirect_to cart_path(@cart)
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update!(cart_item_params)
+    redirect_to cart_path
+  end
+
+  def increase_amount
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount += 1
+    @cart_item.save
+    redirect_to cart_path(anchor: "cart-item-#{@cart_item.id}")
+  end
+
+  def decrease_amount
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.amount -= 1
+    if @cart_item.amount >= 1
+      @cart_item.save
+    else
+      @cart_item.destroy
+    end
+    redirect_to cart_path(anchor: "cart-item-#{@cart_item.id}")
   end
 
   def destroy
+    @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to cart_path
+    redirect_to products_path
   end
 
   private
 
   def cart_params
     params.require(:cart).permit(:total_price, :order_number, :status)
+  end
+
+  def cart_item_params
+    params.require(:cart_item).permit(:amount)
   end
 
   def find_create_cart

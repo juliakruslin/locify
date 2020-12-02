@@ -1,14 +1,55 @@
-<div class="container col-10 mx-auto">
-<h1><strong>Your Cart</strong></h1>
-    <% @cart.cart_items.each do |cart_item|%>
-<div class="cart-item d-flex justify-content-start">
-  <%= cl_image_tag cart_item.product.photos.first.key if cart_item.product.photos.attached? %>
-  <div class="cart-item-info">
-    <td>
-      <%= cart_item.product.name %> <%= cart_item.product.price %> <%= cart_item.amount%>x EUR <%= cart_item.price %>
-    </td>
+<div class="container">
+  <%= link_to cart_path, method: :delete, data: { confirm: "Are you sure you want to delete your cart?" } do %>
+  <i class="fas fa-trash"></i>
+  <% end %>
+  <h1><strong>Your Cart</strong></h1>
+  <div class="cart-body space-between">
+    <% @cart_items.each do |cart_item|%>
+    <div class="cart-item border-bottom" >
+      <div class="d-flex align-items-center text-left text-md-center row" id="cart-item-<%=cart_item.id%>">
+        <div class="cart-item-img">
+          <!-- TODO: link to single product has to be fixed -->
+          <!-- TODO: perhaps fix reloading of page with javascript -->
+          <%= link_to products_path(@product) do %>
+          <%= cl_image_tag cart_item.product.photos.first.key if cart_item.product.photos.attached?%>
+          <% end %>
+        </div>
+        <div class="cart-item-title text-left m-3" style="width: 300px">
+          <%= cart_item.product.name %>
+        </div>
+        <div class="cart-item-info d-flex">
+          <div class="cart-item-single-price d-flex align-items-center text-right m-3">
+            € <%= cart_item.product.price.round%>
+          </div>
+          <div class="cart-item-complete-amount d-flex align-items-center m-3">
+           <div class="cart-item-amount-down m-3">
+            <%=  link_to decrease_amount_path(cart_item), method: :post, remote: true do %>
+            <%= image_tag "icons/arrow_down", alt: "arrowdown", class:"arrow-icon" %>
+            <% end %>
+          </div>
+          <div class="cart-item-amount border">
+            <%= cart_item.amount %>
+          </div>
+          <div class="cart-item-amount-up m-3">
+            <%=  link_to increase_amount_path(cart_item), method: :post, remote: true do %>
+            <%= image_tag "icons/arrow_up", alt: "arrowup", class:"arrow-icon" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="cart-item-price d-flex align-items-center text-right m-3">
+          € <%= cart_item.price.round%>
+        </div>
+        <div class="cart-item-delete d-flex align-items-center m-3">
+          <%= link_to cart_item_path(cart_item), method: :delete, data: { confirm: "Are you sure you want to delete this product?" } do %>
+            <i class="far fa-times"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+  <% end %>
 </div>
-<% end %>
-<li><%= @cart.total_price %></li>
+<div class="total-price text-right">
+  <%= @cart.total_price %>
+</div>
 </div>
