@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   #has_many :delivery_options
   # has_many :carts, through: :cart_item
   has_many_attached :photos
+  belongs_to :category
 
   validates :name, presence: true
   validates :description, presence: true
