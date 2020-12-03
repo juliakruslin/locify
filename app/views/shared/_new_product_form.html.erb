@@ -3,6 +3,7 @@
   <%= simple_form_for @product do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.association :category%>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { minlength: 1, maxlength: 5, multiple: true } %>
   <%= f.button :submit, class: "btn-primary" %>
