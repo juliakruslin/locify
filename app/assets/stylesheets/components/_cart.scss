@@ -42,3 +42,34 @@
   padding: 5px 15px;
 }
 
+.first-line {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.fas.fa-trash {
+  color: #a8475e;
+}
+
+.bottom-line {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  background-color: #F9EBEB;
+  margin-top: 5px;
+  padding: 5px;
+  h6 {
+    padding: 5px;
+    margin: 5px 20px;
+  }
+  .total-price {
+    margin-right: 100px;
+  }
+}
+
+
+
+
+
+
+
