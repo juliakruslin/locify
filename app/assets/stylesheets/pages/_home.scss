@@ -23,8 +23,8 @@
 }
 
 .form-control.form-control-product {
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .form-control.form-control-search {
@@ -53,3 +53,11 @@
 // .button-banner {
 //   background-color: #a8475e;
 // }
+
+.product-search  {
+  width: 300px;
+}
+
+.location-search {
+   width: 300px;
+}

@@ -9,9 +9,11 @@
 
   <% ["Pick-up", "Postal Delivery", "Instant Bike Delivery"].each do |name|%>
     <%= f.simple_fields_for :delivery_options do |s| %>
-    <%= check_box_tag "offered_delivery_options[#{name}]" %>
-    <p><%= name %></p><%= s.input :name, input_html: {value: name}, as: :hidden %>
-    <%= s.input :price %>
+  <div class="form-delivery d-flex mr-2">
+    <div class="delivery-option-name mr-2"><%= check_box_tag "offered_delivery_options[#{name}]" %></div>
+    <div class=""><p><%= name %></p><%= s.input :name, input_html: {value: name}, as: :hidden %></div>
+    </div>
+    <div class="price"><%= s.input :price %></div>
     <% end %>
   <% end %>
 
