@@ -29,4 +29,14 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+
+  a {
+    color: rgba(#000, 0.6);
+  text-decoration: none;
+  }
+
+  a:hover {
+    color: rgba(#000, 0.9);
+    text-decoration: none;
+  }
 }

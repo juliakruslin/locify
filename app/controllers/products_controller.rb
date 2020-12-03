@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
       @products = @products.where(user_id: @user_ids)
     end
     map
+
   end
 
   def show
@@ -88,8 +89,6 @@ class ProductsController < ApplicationController
   new_product_params
   end
 end
-
-
 
 
 
