@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chatrooms, only: [:show, :index] do
+    resources :messages, only: :create
+end
+
   resources :products
   resource :cart
   resources :cart_items, only: [:destroy]
