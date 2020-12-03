@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   #has_many :delivery_options
   # has_many :carts, through: :cart_item
   has_many_attached :photos
+  has_many :reviews, dependent: :destroy
   belongs_to :category
 
   has_many :delivery_options, dependent: :destroy

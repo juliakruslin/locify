@@ -10,9 +10,11 @@ require "open-uri"
 
 CartItem.destroy_all
 Cart.destroy_all
+Review.destroy_all
 Product.destroy_all
 User.destroy_all
 Category.destroy_all
+
 
 ADDRESSES = [
   {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
@@ -49,9 +51,10 @@ ADDRESSES.each do |address|
     city: address[:city],
     postal_code: address[:postal_code],
     seller_approved: true
-  )
+    )
 
-p "#{Product.count} products created"
+  p "#{Product.count} products created"
+
 
 
 deliveryoptions = [
@@ -60,7 +63,8 @@ deliveryoptions = [
     DeliveryOption.create(name: "Instant Bike Delivery", price: "4.95")
     ]
 
-    10.times do
+
+  10.times do
     product = Product.create!(
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(sentence_count: 5),
@@ -72,6 +76,7 @@ deliveryoptions = [
       file = URI.open("https://source.unsplash.com/collection/3590310/300x200")
       product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     end
+
     deliveryoptions.first(rand(1..3)).each_with_index do |deliveryoption, index|
       deliveryoption.product = product
       deliveryoption.save
@@ -79,6 +84,18 @@ deliveryoptions = [
     end
 
   puts "#{DeliveryOption.count} delivery options created!"
+
+
+
+    rand(3..6).times do
+      review = Review.create!(
+        product: product,
+        user: store,
+        stars: rand(1...5),
+        description: Faker::Restaurant.review
+        )
+    p "#{Review.count} reviews created"
+    end
 
     p "#{Product.count} products created"
   end

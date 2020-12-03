@@ -1,46 +1,72 @@
 <div class="container mt-5">
 
 
-<div class="product-photos">
-  <div class="photos-container">
-    <%= cl_image_tag @product.photos.first&.key, id: "highlight-photo" %>
-    <div class="photos">
-      <% @product.photos.first(5).each do |photo| %>
-      <%= cl_image_tag photo.key %>
+
+  <div class="product-photos">
+    <div class="photos-container">
+      <%= cl_image_tag @product.photos.first&.key, id: "highlight-photo" %>
+      <div class="photos">
+        <% @product.photos.first(5).each do |photo| %>
+        <%= cl_image_tag photo.key %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="product-description">
+      <h2><strong><%= @product.name %></strong></h2>
+      <p><strong> Seller: </strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+
+      <p>EUR <%= @product.price %></p>
+
+      <p><%= @product.description %></p>
+
+      <% @product.delivery_options.each do |delivery_option|%>
+      <p><%= delivery_option.name %></p>
+
       <% end %>
+      <i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %>
     </div>
   </div>
-</div>
 
-  <div class="product-description">
-<h2><strong><%= @product.name %></strong></h2>
-<p><strong> Seller: </strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
 
-<p>EUR <%= @product.price %></p>
+  <%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
 
-<p><%= @product.description %></p>
+  <button id="delete-product" class="btn btn-danger">Delete this listing</button>
+  <%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
 
-<% @product.delivery_options.each do |delivery_option|%>
-  <p><%= delivery_option.name %></p>
-
-<% end %>
-<i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %>
-</div>
-
-<%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
-
-<button id="delete-product" class="btn btn-danger">Delete this listing</button>
-<%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
-
-<%= link_to "Back to all products", products_path, class: "btn btn-success" %>
-<%= link_to "add to cart", add_to_cart_path(@product), method: :post %>
+  <%= link_to "Back to all products", products_path, class: "btn btn-success" %>
+  <%= link_to "add to cart", add_to_cart_path(@product), method: :post, class: "btn btn-secondary" %>
+  <%= link_to 'Add a review', new_product_review_path(@product), class: "btn btn-warning" %>
 
   <div id="map"
   style="width: 100%; height: 100vh;"
   data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
 </div>
 
+<div class="reviews m-5">
+  <h3>Reviews</h3>
+  <ul class="list-group">
+    <% @product.reviews.each do |review| %>
+    <div class="review mt-2 border-top">
+      <div class="stars d-flex pt-2">
+        <div class="stars-full d-flex">
+          <% review.stars.times do %>
+          <i class="fas fa-star"></i>
+          <% end %>
+        </div>
 
+        <div class="stars-empty d-flex">
+          <% (5 - review.stars).times do %>
+          <i class="far fa-star"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="review-description pt-2">
+        <%= review.description%>
+        <% end %>
+      </div>
+    </div>
+  </ul>
+</div>
