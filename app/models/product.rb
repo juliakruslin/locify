@@ -4,7 +4,11 @@ class Product < ApplicationRecord
   #has_many :delivery_options
   # has_many :carts, through: :cart_item
   has_many_attached :photos
+<<<<<<< HEAD
   has_many :reviews, dependent: :destroy
+=======
+  belongs_to :category
+>>>>>>> master
 
   validates :name, presence: true
   validates :description, presence: true

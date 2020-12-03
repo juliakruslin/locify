@@ -30,6 +30,7 @@ import { initLightbox } from '../plugins/init_lightbox';
 import { loadDynamicBannerText } from '../components/banner';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
+import { initChatroomCable } from '../channels/chatroom_channel'
 
 
 // Internal imports, e.g:
@@ -38,6 +39,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  initChatroomCable();
   initLightbox();
   initMapbox();
   loadDynamicBannerText();

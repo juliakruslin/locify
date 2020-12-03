@@ -19,6 +19,7 @@ ADDRESSES = [
   {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
   {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
 ]
+categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & Decor", "Fashion & Accessoires", "Sports", "Electronics"]
 
 # user = User.create!(
 #   email: "lewagon@lewagon.com",
@@ -26,6 +27,14 @@ ADDRESSES = [
 #   last_name: "Kruslin",
 #   password: "coolstuffwhatever"
 #   )
+
+  categories.map! do |category|
+    category = Category.create(name: category)
+    category
+  end
+
+  puts "#{Category.count} categories created!"
+
 
 ADDRESSES.each do |address|
   store = User.create!(
@@ -49,6 +58,7 @@ ADDRESSES.each do |address|
       description: Faker::Lorem.paragraph(sentence_count: 5),
       price: rand(0..500),
       user: store,
+      category: Category.all.sample,
       )
     5.times do
       file = URI.open("https://source.unsplash.com/collection/3590310/300x200")

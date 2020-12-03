@@ -15,7 +15,7 @@
           <%= link_to "Home", "/", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Cart", "/cart", class: "nav-link" %>
@@ -35,4 +35,10 @@
       <% end %>
     </ul>
   </div>
+</div>
+
+<div class="lower-navbar d-flex justify-content-center">
+  <% categories.each do |category| %>
+    <%= link_to category.name, products_path(category: category.name), class: "category-name" %>
+  <% end %>
 </div>

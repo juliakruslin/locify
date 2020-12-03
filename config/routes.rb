@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   resources :reviews, except: [ :new, :create]
 
+  resources :chatrooms, only: [:show, :index] do
+    resources :messages, only: :create
+  end
+
   resource :cart
   resources :cart_items, only: [:destroy]
   post "/add_item_cart/:id", to: "carts#add_to_cart", as: "add_to_cart"

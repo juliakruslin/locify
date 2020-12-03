@@ -11,3 +11,25 @@
   width: 40px;
 }
 
+.lower-navbar {
+  background-color: white;
+  font-size: 11px;
+  border-bottom: 1px solid rgba(#000, 0.1);
+  text-align: center;
+  content-align: center;
+  padding-bottom: 10px;
+  a {
+  color: rgba(#000,0.5);
+  }
+  a:hover {
+  color: rgba(#000,0.9);
+  text-decoration: none;
+  transform: scale(1.03, 1.03);
+  }
+
+}
+
+.category-name {
+  margin-left: 40px;
+}
+
