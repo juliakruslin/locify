@@ -24,6 +24,7 @@
       <% sum %>
       <% end  %>
 
+      <% if @product.reviews.count > 0  %>
       <div class="stars d-flex pt-2">
         <div class="stars-full d-flex">
           <% (sum/@product.reviews.count).times do %>
@@ -35,10 +36,10 @@
           <% (5 - (sum/@product.reviews.count)).times do %>
           <i class="far fa-star"></i>
           <% end %>
-        <p class="ml-2">(<%= @product.reviews.count %>)</p>
+          <p class="ml-2">(<%= @product.reviews.count %>)</p>
         </div>
       </div>
-
+      <% end %>
 
       <%= link_to "Add item to cart", add_to_cart_path(@product), method: :post, class: "btn btn-secondary btn-sm btn-block" %>
 
