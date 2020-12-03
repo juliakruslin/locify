@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(version: 2020_12_03_101549) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+  
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "delivery_options", force: :cascade do |t|
     t.string "name"
@@ -89,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_12_03_101549) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -122,5 +130,6 @@ ActiveRecord::Schema.define(version: 2020_12_03_101549) do
   add_foreign_key "delivery_options", "products"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end
