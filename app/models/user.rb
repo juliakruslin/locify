@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :products
   has_many :carts
   has_many :cart_items, through: :carts
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_street_number?
