@@ -12,12 +12,14 @@ CartItem.destroy_all
 Cart.destroy_all
 Product.destroy_all
 User.destroy_all
+Category.destroy_all
 
 ADDRESSES = [
   {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
   {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
 ]
 categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & Decor", "Fashion & Accessoires", "Sports", "Electronics"]
+# delivery_options = ["Pick-up", "Postal Delivery", "Instant Bike Delivery"]
 
 # user = User.create!(
 #   email: "lewagon@lewagon.com",
@@ -32,6 +34,8 @@ categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & D
   end
 
   puts "#{Category.count} categories created!"
+
+
 
 
 ADDRESSES.each do |address|
@@ -50,6 +54,12 @@ ADDRESSES.each do |address|
 p "#{Product.count} products created"
 
 
+deliveryoptions = [
+    DeliveryOption.create(name: "Pick-up", price: "0"),
+    DeliveryOption.create(name: "Delivery", price: "3.95"),
+    DeliveryOption.create(name: "Instant Bike Delivery", price: "4.95")
+    ]
+
     10.times do
     product = Product.create!(
       name: Faker::Commerce.product_name,
@@ -62,6 +72,15 @@ p "#{Product.count} products created"
       file = URI.open("https://source.unsplash.com/collection/3590310/300x200")
       product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     end
+    deliveryoptions.first(rand(1..3)).each_with_index do |deliveryoption, index|
+      deliveryoption.product = product
+      deliveryoption.save
+      puts "Creating deliveryoption #{index + 1} for #{product.name}"
+    end
+
+  puts "#{DeliveryOption.count} delivery options created!"
+
     p "#{Product.count} products created"
   end
 end
+

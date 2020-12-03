@@ -54,6 +54,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.delivery_options.build
   end
 
   # create is not working yet
@@ -89,7 +90,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :category, photos: [])
+    params.require(:product).permit(:name, :description, :price, :category_id, photos: [], delivery_options_attributes: [:name])
   end
 end
 
