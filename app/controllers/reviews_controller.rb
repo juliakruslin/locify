@@ -24,4 +24,5 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:stars, :description)
   end
+  # random comment
 end
