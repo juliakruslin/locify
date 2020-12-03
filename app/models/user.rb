@@ -4,10 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :products
-  has_many :carts
-  has_many :cart_items, through: :carts
+
+  has_many :products, dependent: :destroy
+  has_many :carts, dependent: :destroy
+  has_many :cart_items, through: :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_street_number?

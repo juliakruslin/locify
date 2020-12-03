@@ -7,6 +7,9 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :category
 
+  has_many :delivery_options, dependent: :destroy
+  accepts_nested_attributes_for :delivery_options
+
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
