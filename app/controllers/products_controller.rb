@@ -2,10 +2,14 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    if params[:query].present?
-      @products = Product.global_search(params[:query])
+     if params[:category].present?
+      @products = Product.joins(:category).where(categories: { name: params[:category] })
     else
       @products = Product.all
+    end
+
+    if params[:query].present?
+      @products = @products.global_search(params[:query])
     end
 
     if params[:location].present?
@@ -57,6 +61,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+    @product.category = Category.find(params[:product][:category_id])
     if @product.save!
       redirect_to product_path(@product)
     else
@@ -84,7 +89,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, photos: [])
+    params.require(:product).permit(:name, :description, :price, :category, photos: [])
   end
 end
 
