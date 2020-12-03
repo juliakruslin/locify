@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 2020_12_03_101820) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "chatrooms", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
