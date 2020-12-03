@@ -15,15 +15,6 @@ Product.destroy_all
 User.destroy_all
 
 
-
-
-# 10.times do
-#   review = Review.create!(stars: stars.sample, description: descriptions.sample)
-# end
-
-
-
-
 ADDRESSES = [
   {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
   {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
@@ -64,12 +55,12 @@ ADDRESSES.each do |address|
       product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     end
 
-    rand(5..10).times do
+    rand(3..6).times do
       review = Review.create!(
         product: product,
         user: store,
         stars: rand(1...5),
-        description: Faker::Lorem.paragraph(sentence_count: 2)
+        description: Faker::Restaurant.review
         )
     p "#{Review.count} reviews created"
     end

@@ -3,22 +3,22 @@
   <legend class="col-form-label pt-0">
     Rating
 </legend>
-<div class="form-group radio_buttons optional post_rating stars <%= @review.stars.nil? ? '' : 'active' %>" data-controller="stars" data-target="stars.wrapper">
-    <input type="hidden" name="post[rating]" value="<%= @review.stars || '' %>">
-    <input class="form-check-input radio_buttons optional" type="radio" value="1" <%= @review.stars == 1 ? 'checked' : '' %> name="review[stars]" id="post_rating_1" data-action="click->stars#handleClick">
-    <label class="form-check-label collection_radio_buttons" for="post_rating_1">
+<div class="form-group radio_buttons optional review_stars stars <%= @review.stars.nil? ? '' : 'active' %>" data-controller="stars" data-target="stars.wrapper">
+    <input type="hidden" name="rewview[stars]" value="<%= @review.stars || '' %>">
+    <input class="form-check-input radio_buttons optional" type="radio" value="1" <%= @review.stars == 1 ? 'checked' : '' %> name="review[stars]" id="review_stars_1" data-action="click->stars#handleClick">
+    <label class="form-check-label collection_radio_buttons" for="review_stars_1">
     </label>
-    <input class="form-check-input radio_buttons optional" type="radio" value="2" <%= @review.stars == 2 ? 'checked' : '' %> name="review[stars]" id="post_rating_2" data-action="click->stars#handleClick">
-    <label class="form-check-label collection_radio_buttons" for="post_rating_2">
+    <input class="form-check-input radio_buttons optional" type="radio" value="2" <%= @review.stars == 2 ? 'checked' : '' %> name="review[stars]" id="review_stars_2" data-action="click->stars#handleClick">
+    <label class="form-check-label collection_radio_buttons" for="review_stars_2">
     </label>
-    <input class="form-check-input radio_buttons optional" type="radio" value="3" <%= @review.stars == 3 ? 'checked' : '' %> name="review[stars]" id="post_rating_3" data-action="click->stars#handleClick">
-    <label class="form-check-label collection_radio_buttons" for="post_rating_3">
+    <input class="form-check-input radio_buttons optional" type="radio" value="3" <%= @review.stars == 3 ? 'checked' : '' %> name="review[stars]" id="review_stars_3" data-action="click->stars#handleClick">
+    <label class="form-check-label collection_radio_buttons" for="review_stars_3">
     </label>
-    <input class="form-check-input radio_buttons optional" type="radio" value="4" <%= @review.stars == 4 ? 'checked' : '' %> name="review[stars]" id="post_rating_4" data-action="click->stars#handleClick">
-    <label class="form-check-label collection_radio_buttons" for="post_rating_4">
+    <input class="form-check-input radio_buttons optional" type="radio" value="4" <%= @review.stars == 4 ? 'checked' : '' %> name="review[stars]" id="review_stars_4" data-action="click->stars#handleClick">
+    <label class="form-check-label collection_radio_buttons" for="review_stars_4">
     </label>
-    <input class="form-check-input radio_buttons optional" type="radio" value="5" <%= @review.stars == 5 ? 'checked' : '' %> name="review[stars]" id="post_rating_5" data-action="click->stars#handleClick">
-    <label class="form-check-label collection_radio_buttons" for="post_rating_5">
+    <input class="form-check-input radio_buttons optional" type="radio" value="5" <%= @review.stars == 5 ? 'checked' : '' %> name="review[stars]" id="review_stars_5" data-action="click->stars#handleClick">
+    <label class="form-check-label collection_radio_buttons" for="review_stars_5">
     </label>
 </div>
   <%= f.input :description %>
