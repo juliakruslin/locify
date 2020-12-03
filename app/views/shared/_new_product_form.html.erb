@@ -7,8 +7,12 @@
   <%= f.input :name %>
   <%= f.input :description %>
 
-  <%= f.simple_fields_for :delivery_options do |s| %>
-  <%= s.input :name, collection: ["Pick-up", "Postal Delivery", "Instant Bike Delivery"], as: :check_boxes  %>
+  <% ["Pick-up", "Postal Delivery", "Instant Bike Delivery"].each do |name|%>
+    <%= f.simple_fields_for :delivery_options do |s| %>
+    <%= check_box_tag "offered_delivery_options[#{name}]" %>
+    <p><%= name %></p><%= s.input :name, input_html: {value: name}, as: :hidden %>
+    <%= s.input :price %>
+    <% end %>
   <% end %>
 
   <%= f.association :category %>
