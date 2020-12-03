@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="first-line">
+  <div class="first-line d-flex space-between mb-3">
     <div class="title">
-      <h3><strong>Your Cart</strong></h3>
+      <h3><strong>My Cart</strong></h3>
     </div>
 
-    <div class="delete-cart d-flex justify-content-end">
+    <div class="delete-cart">
       <%= link_to cart_path, method: :delete, data: { confirm: "Are you sure you want to delete your cart?" } do %>
       <i class="fas fa-trash"></i>
       <% end %>
@@ -56,7 +56,8 @@
   </div>
   <% end %>
 </div>
-<div class="total-price text-right">
-  <%= @cart.total_price %>
+<div class="bottom-line">
+  <h6><strong>Total order price: </h6></strong>
+  <h6 class="total-price"><strong>€ <%= @cart.total_price.round %></h6></strong>
 </div>
 </div>

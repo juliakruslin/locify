@@ -8,7 +8,8 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 100px;
+  width: 150px;
+  font-color: red;
 }
 
 .lower-navbar {
@@ -26,11 +27,37 @@
   text-decoration: none;
   transform: scale(1.03, 1.03);
   }
-
 }
 
 .category-name {
   margin-left: 40px;
 }
 
+.product-search-nav {
+  flex-grow: 1;
+  border-radius: 40px;
+  max-width: 400px;
+}
 
+.form-control.product-search-nav {
+  border: 0.5px solid #a8475e;
+  font-size: 12px;
+}
+
+.fas.fa-shopping-cart {
+  color: #a8475e;
+  font-size: 18px;
+  margin: 3px;
+}
+
+.fas.fa-heart {
+  color: #a8475e;
+  font-size: 18px;
+  margin: 3px;
+}
+
+.fas.fa-home {
+  color: #a8475e;
+  font-size: 18px;
+  margin: 3px;
+}
