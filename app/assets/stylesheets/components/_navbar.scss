@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  // border-bottom: 1px solid black;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -56,8 +57,9 @@
   margin: 3px;
 }
 
-.fas.fa-home {
+.fas.fa-comment {
   color: #a8475e;
   font-size: 18px;
   margin: 3px;
 }
+

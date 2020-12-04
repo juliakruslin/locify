@@ -8,6 +8,7 @@
 require 'faker'
 require "open-uri"
 
+Chatroom.destroy_all
 CartItem.destroy_all
 Cart.destroy_all
 Review.destroy_all
@@ -38,14 +39,12 @@ categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & D
   puts "#{Category.count} categories created!"
 
 
-
-
-ADDRESSES.each do |address|
+ADDRESSES.each_with_index do |address, index|
   store = User.create!(
-    email: Faker::Internet.email,
+    email: "test#{index}@store.com",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    password: "coolstuffwhatever",
+    password: "123456",
     street_name: address[:street_name],
     street_number: address[:street_number],
     city: address[:city],

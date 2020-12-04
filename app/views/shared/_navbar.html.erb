@@ -21,8 +21,8 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "/", class: "nav-link" do %>
-            <i class="fas fa-home"></i>
+          <%= link_to "/chatrooms", class: "nav-link" do %>
+            <i class="fas fa-comment"></i>
           <% end %>
         </li>
         <li class="nav-item">
@@ -36,7 +36,7 @@
           <% end %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "juanpablo.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", "#", class: "dropdown-item" %>
             <%= link_to "Messages", chatrooms_path, class: "dropdown-item" %>
@@ -44,9 +44,9 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
       <% end %>
     </ul>
   </div>
@@ -57,6 +57,6 @@
          <strong> <%= link_to "All Products", products_path, class: "category-name" %></strong>
         </div>
   <% categories.each do |category| %>
-    <%= link_to category.name, products_path(category: category.name), class: "category-name" %>
+  <%= link_to category.name, products_path(category: category.name), class: "category-name" %>
   <% end %>
 </div>
