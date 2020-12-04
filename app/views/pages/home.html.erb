@@ -1,11 +1,11 @@
 <div class="home_video">
   <%= video_tag "ronaldreiter.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, class: "home_video" %>
 </div>
-  <div class="banner-title">
-    <h1>Your marketplace for local products</h1>
-    <p>Support local sellers around you and make your shopping behaviour more sustainable</p>
-      <%= link_to "Become a seller", new_product_path, class: "btn btn-secondary" %>
-  </div>
+<div class="banner-title">
+  <h1>Your marketplace for local products</h1>
+  <p>Support local sellers around you and make your shopping behaviour more sustainable</p>
+  <%= link_to "Become a seller", new_product_path, class: "btn btn-secondary" %>
+</div>
 
 <div class="container d-flex flex-column justify-content-center ">
 
@@ -16,30 +16,30 @@
       <br>
     </div>
   -->
-  <div class="searchbar mt-5 d-flex justify-content-center">
-  <!-- product search field -->
-    <div class="product-search">
-     <%= text_field_tag :query,
-     params[:query],
-     class: "form-control form-control-product",
-      placeholder: "Find a product"
-      %>
-    </div>
-    <!-- location search field -->
-    <div class="location-search">
+
+
+  <div class="searchbar mt-5 d-flex align-items-center justify-content-center">
+    <!-- product search field -->
+    <div class="products-search">
       <%= form_tag products_path, method: :get do %>
-      <%= text_field_tag :location,
-      params[:location],
-      class: "form-control form-control-location",
-        id: "location-search",
-        placeholder: "Look for a location"
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        placeholder: "Find a product"
         %>
       </div>
-      <!-- submit search field -->
-      <div class="search-button">
-        <button><i class="fas fa-search-location"></i></button>
+      <div class="location-search">
+        <%= text_field_tag :location,
+        params[:location],
+        class: "form-control",
+          id: "location-search",
+          placeholder: "Look for a location"
+          %>
+        </div>
+        <div class="search-button">
+          <%= submit_tag "Search", class: "btn btn-dark" %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
     </div>
-  </div>
 
