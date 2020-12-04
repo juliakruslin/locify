@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def full_address
     "#{street_name}, #{street_number}, #{city}, #{postal_code}"
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
