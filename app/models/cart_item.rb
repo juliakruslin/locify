@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
   belongs_to :product
-  belongs_to :cart
+  belongs_to :cart, touch: true
   # belongs_to :delivery_option
 
   before_validation(:calculate_price)
@@ -8,6 +8,7 @@ class CartItem < ApplicationRecord
 
   def calculate_price
     self.price = self.product.price * amount
+
   end
 
   def recalculate_total

@@ -20,8 +20,8 @@
 
   <div class="searchbar mt-5 d-flex align-items-center justify-content-center">
     <!-- product search field -->
-    <div class="products-search">
       <%= form_tag products_path, method: :get do %>
+    <div class="products-search">
       <%= text_field_tag :query,
       params[:query],
       class: "form-control",
