@@ -14,7 +14,8 @@
 
   <div class="product-description">
 <h2><strong><%= @product.name %></strong></h2>
-<p><strong> Seller: </strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+<%= link_to @product.user.first_name, store_path(@product.user)  %>
+<p><strong> Sell</strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
 <p>EUR <%= @product.price %></p>
 <p><%= @product.description %></p>
 <i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %>

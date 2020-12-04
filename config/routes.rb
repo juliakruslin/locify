@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'stores/show'
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -10,9 +11,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :stores, only: [:show], as: 'store' do
+    member do
+      post 'chat', to: 'chatrooms#show'
+      post 'chatrooms', to: "chatrooms#create"
+    end
+  end
+
   resources :chatrooms, only: [:show, :index] do
     resources :messages, only: :create
-end
+  end
+
 
   resources :products
   resource :cart

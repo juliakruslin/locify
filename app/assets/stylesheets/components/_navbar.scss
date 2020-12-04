@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  // border-bottom: 1px solid black;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -31,5 +32,16 @@
 
 .category-name {
   margin-left: 40px;
+}
+
+.welcome-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  align-items: flex-end;
+  p {
+    margin-bottom: 0;
+    font-size: 10px;
+  }
 }
 
