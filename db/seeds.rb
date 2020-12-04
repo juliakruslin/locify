@@ -11,14 +11,18 @@ require "open-uri"
 Chatroom.destroy_all
 CartItem.destroy_all
 Cart.destroy_all
+Review.destroy_all
 Product.destroy_all
 User.destroy_all
+Category.destroy_all
+
 
 ADDRESSES = [
   {street_name: 'Plantsoen', street_number: '69', city: 'Leiden', postal_code: '2311 KJ'},
   {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
 ]
 categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & Decor", "Fashion & Accessoires", "Sports", "Electronics"]
+# delivery_options = ["Pick-up", "Postal Delivery", "Instant Bike Delivery"]
 
 # user = User.create!(
 #   email: "lewagon@lewagon.com",
@@ -46,12 +50,20 @@ ADDRESSES.each_with_index do |address, index|
     city: address[:city],
     postal_code: address[:postal_code],
     seller_approved: true
-  )
+    )
 
-p "#{Product.count} products created"
+  p "#{Product.count} products created"
 
 
-    10.times do
+
+deliveryoptions = [
+    DeliveryOption.create(name: "Pick-up", price: "0"),
+    DeliveryOption.create(name: "Delivery", price: "3.95"),
+    DeliveryOption.create(name: "Instant Bike Delivery", price: "4.95")
+    ]
+
+
+  10.times do
     product = Product.create!(
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(sentence_count: 5),
@@ -63,6 +75,28 @@ p "#{Product.count} products created"
       file = URI.open("https://source.unsplash.com/collection/3590310/300x200")
       product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     end
+
+    deliveryoptions.first(rand(1..3)).each_with_index do |deliveryoption, index|
+      deliveryoption.product = product
+      deliveryoption.save
+      puts "Creating deliveryoption #{index + 1} for #{product.name}"
+    end
+
+  puts "#{DeliveryOption.count} delivery options created!"
+
+
+
+    rand(3..6).times do
+      review = Review.create!(
+        product: product,
+        user: store,
+        stars: rand(1...5),
+        description: Faker::Restaurant.review
+        )
+    p "#{Review.count} reviews created"
+    end
+
     p "#{Product.count} products created"
   end
 end
+

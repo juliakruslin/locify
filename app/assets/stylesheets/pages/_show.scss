@@ -1,7 +1,85 @@
-.product-photos {
-  img {
-  width: 300px;
-  height: 200px;
-  object-fit: cover;
+.product-description {
+font-family: "Montserrat";
+min-width: 500px;
+}
+
+
+.product-info {
+// font-family: 'Bebas Neue', cursive;
+padding: 0px;
+}
+
+.back-to-products a {
+  color: rgba(#000, 0.6);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.back-to-products a:hover {
+    color: rgba(#000, 0.9);
+    transform: scale(1.03, 1.03);
+  }
+
+.arrow {
+  color: rgba(#000, 0.6);
+}
+
+.add-review {
+  // border-radius: 20%;
+  height: 30px;
+  width: 200px;
+  color: white;
+  border: 1px solid grey;
+  text-align: center;
+  border-radius: 20px;
+  a {
+    color:grey;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin-top: 6px;
+  }
+}
+
+.accordion-button {
+  color: rgba(#000, 0.8);
+  border: none;
+  font-size: 14px;
+  background: none;
+}
+
+.card-header {
+  background: none;
+    border: none;
+    border-bottom: lightgrey solid 1px;
+}
+
+.card-body-accordion {
+  color: grey;
+  font-size: 12px;
+  margin-left: 30px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.location {
+  margin-top: 30px;
+  font-size: 12px;
+}
+
+.delivery-option {
+border: grey solid 1px;
+border-radius: 3px;
+height: 100px;
+width: 200px;
+color: white;
+text-align: center;
+  a {
+    color:grey;
+    text-decoration: none;
+    font-size: 12px;
+    padding-bottom: 3px;
+    padding-bottom: 3px;
   }
 }

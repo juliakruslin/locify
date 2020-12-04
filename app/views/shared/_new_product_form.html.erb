@@ -1,9 +1,21 @@
 <div class="container col-8">
   <h4 class="mt-4">Please provide some information about your product</h4>
-  <%= simple_form_for @product do |f| %>
+  <%= simple_form_for @product,
+  wrapper_mappings: {
+    check_boxes:   :custom_collection,
+  } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.association :category%>
+
+  <% ["Pick-up", "Postal Delivery", "Instant Bike Delivery"].each do |name|%>
+    <%= f.simple_fields_for :delivery_options do |s| %>
+    <%= check_box_tag "offered_delivery_options[#{name}]" %>
+    <p><%= name %></p><%= s.input :name, input_html: {value: name}, as: :hidden %>
+    <%= s.input :price %>
+    <% end %>
+  <% end %>
+
+  <%= f.association :category %>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { minlength: 1, maxlength: 5, multiple: true } %>
   <%= f.button :submit, class: "btn-primary" %>

@@ -3,6 +3,14 @@
   background-color: #blue;
 }
 
+.banner-title {
+  color: white;
+  padding: 30px;
+  margin-top: 40px;
+  background-color: rgba(0,0,0,0.3);
+
+}
+
 .home_video {
  width: 100vw;
  height: 100vh;
@@ -13,3 +21,35 @@
  top: 0;
  z-index: -2;
 }
+
+.form-control.form-control-product {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.form-control.form-control-search {
+  width: 400px;
+}
+
+
+.body {
+  font-family: Montserrat;
+}
+
+.stars {
+  color: grey;
+}
+
+.search-button button {
+  color: white;
+  background-color: #a8475e;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid #a8475e;
+  font-size: 23px;
+  width: 50px;
+}
+
+// .button-banner {
+//   background-color: #a8475e;
+// }

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-     if params[:category].present?
+    if params[:category].present?
       @products = Product.joins(:category).where(categories: { name: params[:category] })
     else
       @products = Product.all
@@ -16,23 +16,9 @@ class ProductsController < ApplicationController
       @user_ids = User.near(params[:location], 10).map(&:id)
       @products = @products.where(user_id: @user_ids)
     end
-
-    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
     map
+
   end
-    # sql_query = "name @@ :query
-    # OR description @@ :query
-    # OR user @@ :query"
-    # @products = Product.where(sql_query, query: "%#{params[:query]}%")
-
-    # Why dont I have to say product.name?
-    # Do I need an association? The user.name + user.location can be accessed through product
-
-    # User can type in Location --> Geocoding lecture
-    # Dropdown will show potential results (Austria prioritized!)
-    # User chooses result from dropdown
-    # Navigation to specific landing page possible?
-    # Product.user.location (e.g. 5km around them will be shown)
 
   def show
     @product = Product.find(params[:id])
@@ -54,12 +40,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.delivery_options.build
   end
 
   # create is not working yet
 
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params_filtered)
     @product.user = current_user
     @product.category = Category.find(params[:product][:category_id])
     if @product.save!
@@ -67,6 +54,7 @@ class ProductsController < ApplicationController
     else
       render "new"
     end
+
   end
 
   def destroy
@@ -89,14 +77,18 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :category, photos: [])
+    params.require(:product).permit(:name, :description, :price, :category_id, photos: [], delivery_options_attributes: [:name, :price])
+  end
+
+
+  def product_params_filtered
+    new_product_params = product_params
+    new_product_params[:delivery_options_attributes].reject!{ |key, delivery_options|
+      !delivery_options[:name].in?(params[:offered_delivery_options].keys)
+    }
+  new_product_params
   end
 end
-
-
-
-
-
 
 
 

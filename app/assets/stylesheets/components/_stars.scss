@@ -1,0 +1,73 @@
+.stars {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.stars input {
+  display: none;
+}
+
+.stars label {
+  flex-basis: 40px;
+  min-width: 40px;
+  transform: scale(1);
+  transition: transform 200ms ease;
+}
+
+.stars label:active {
+  transform: scale(1.3);
+}
+
+.stars label:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f005";
+  color: gray;
+  transition: color 200ms ease;
+  font-size: 30px;
+}
+
+.stars.active label:before {
+  color: gold;
+}
+
+.stars input:checked ~ label:before {
+  color: gray;
+}
+
+.stars:hover label:before {
+  color: gold;
+}
+
+.stars:hover input:checked ~ label:before {
+  color: gold;
+}
+
+.stars:hover label:hover ~ label:before {
+  color: gray;
+}
+
+.stars input:checked + label:before {
+  color: gold;
+}
+
+.stars label:hover ~ label:before {
+  color: gray;
+}
+
+.fa-star.gold {
+  color: gold;
+}
+
+.fa-star.gray {
+  color: gray;
+}
+
+.stars-full {
+  color: gold;
+}
+
+.stars-emtpy {
+  outline-color: gray;
+  color: grey;
+}

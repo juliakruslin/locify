@@ -1,40 +1,150 @@
-<div class="container mt-5">
+<div class="container mt-2 ">
 
+  <div class="back-to-products"><i class="arrow fas fa-long-arrow-alt-left"></i> <%= link_to "Back to all products", products_path %></div>
 
-<div class="product-photos">
-  <div class="photos-container">
-    <%= cl_image_tag @product.photos.first.key, id: "highlight-photo" %>
-    <div class="photos">
-      <% @product.photos.first(5).each do |photo| %>
-      <%= cl_image_tag photo.key %>
+  <div class="product-info d-flex mt-4 col-4">
+    <div class="product-photos mr-5">
+      <div class="photos-container">
+        <%= cl_image_tag @product.photos.first&.key, id: "highlight-photo" %>
+      </div>
+      <div class="photos">
+        <% @product.photos.first(5).each do |photo| %>
+        <%= cl_image_tag photo.key %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="product-description col-8">
+      <p class="mb-0"><strong> Sold by </strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
+      <h2 class="mb-1"><strong><%= @product.name %></strong></h2>
+      <h6 class="mb-1"><%= @product.price %> € </h6>
+      <% sum = 0 %>
+      <% @product.reviews.each do |review|%>
+      <% sum += review.stars %>
+      <% sum %>
+      <% end  %>
+
+      <% if @product.reviews.count > 0  %>
+      <div class="stars d-flex pt-2">
+        <div class="stars-full d-flex">
+          <% (sum/@product.reviews.count).times do %>
+          <i class="fas fa-star"></i>
+          <% end %>
+        </div>
+
+        <div class="stars-empty d-flex">
+          <% (5 - (sum/@product.reviews.count)).times do %>
+          <i class="far fa-star"></i>
+          <% end %>
+          <p class="ml-2">(<%= @product.reviews.count %>)</p>
+        </div>
+      </div>
       <% end %>
+
+      <%= link_to "Add item to cart", add_to_cart_path(@product), method: :post, class: "btn btn-secondary btn-sm btn-block" %>
+
+      <div class="location mb-1"><i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %></div>
+      <div class="bottom-showpage d-flex">
+        <div id="map"
+        style="width: 480px; height: 190px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
   </div>
 </div>
 
-  <div class="product-description">
-<h2><strong><%= @product.name %></strong></h2>
-<%= link_to @product.user.first_name, store_path(@product.user)  %>
-<p><strong> Sell</strong><%= @product.user.first_name %> <%= @product.user.last_name %></p>
-<p>EUR <%= @product.price %></p>
-<p><%= @product.description %></p>
-<i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %>
-</div>
 
-<%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
+<!-- <div class="delivery-options d-flex justify-content-between mb-2">
+  <% @product.delivery_options.each do |delivery_option|%>
+  <div class="delivery-option">
+    <p><%= link_to delivery_option.name %>:<%= delivery_option.price %> </p>
+  </div>
+  <% end %>
+</div> -->
+<!-- Buttons -->
 
-<button id="delete-product" class="btn btn-danger">Delete this listing</button>
-<%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
-
-<%= link_to "Back to all products", products_path, class: "btn btn-success" %>
-<%= link_to "add to cart", add_to_cart_path(@product), method: :post %>
-
-  <div id="map"
-  style="width: 100%; height: 100vh;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<!--   <div class="buttons">
+    <%= link_to "Edit this listing", edit_product_path(@product), class: "btn btn-secondary" %>
+    <button id="delete-product" class="btn btn-danger">Delete this listing</button>
+    <%= link_to "", product_path(@product), method: :delete, id: "delete-link", class: "hidden" %>
+  </div> -->
 
 
-</div>
+  <!-- Accordion start -->
 
 
+  <div class="accordion mt-5 mb-5" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            + Product Descripion
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body-accordion">
+          <p><%= @product.description %></p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Description end -->
+
+    <!-- Reviews start -->
+
+
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            + Reviews
+          </button>
+        </h5>
+      </div>
+
+
+      <!-- reviews collapse -->
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body-accordion">
+
+          <div class="reviews m-5">
+            <div class="d-flex">
+              <h3 class="mr-5">Reviews</h3>
+              <div class="add-review justify-content-center align-items-center"> <%= link_to '+ Add review', new_product_review_path(@product) %></div>
+            </div>
+            <ul class="list-group">
+              <% @product.reviews.each do |review| %>
+              <div class="review mt-2 border-top">
+                <div class="stars d-flex pt-2">
+                  <div class="stars-full d-flex">
+                    <% review.stars.times do %>
+                    <i class="fas fa-star"></i>
+                    <% end %>
+                  </div>
+
+                  <div class="stars-empty d-flex">
+                    <% (5 - review.stars).times do %>
+                    <i class="far fa-star"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="review-description pt-2">
+                  <%= review.description%>
+                  <% end %>
+                </div>
+              </div>
+            </ul>
+          </div>
+
+          <!-- Review collapse end -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- </div> -->
