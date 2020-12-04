@@ -31,7 +31,7 @@
           <div class="cart-item-complete-amount d-flex align-items-center m-3">
            <div class="cart-item-amount-down m-1 border">
             <%=  link_to decrease_amount_path(cart_item), method: :post, remote: true do %>
-            <%= image_tag "icons/arrow_down", alt: "arrowdown", class:"arrow-icon" %>
+            <%= image_tag "icons/arrow_down.svg", alt: "arrowdown", class:"arrow-icon" %>
             <% end %>
           </div>
           <div class="cart-item-amount border">
@@ -39,7 +39,7 @@
           </div>
           <div class="cart-item-amount-up m-1 border">
             <%=  link_to increase_amount_path(cart_item), method: :post, remote: true do %>
-            <%= image_tag "icons/arrow_up", alt: "arrowup", class:"arrow-icon" %>
+            <%= image_tag "icons/arrow_up.svg", alt: "arrowup", class:"arrow-icon" %>
             <% end %>
           </div>
         </div>
