@@ -1,0 +1,94 @@
+.chat-button {
+  background: none;
+  border: grey solid 2px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 6px;
+  width: 155px;
+  background: #A8475E;
+  border: none;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.follow-button  {
+  background: none;
+  border: lightgrey solid 2px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 6px;
+  width: 155px;
+  a {
+    color: grey;
+    text-decoration: none;
+  }
+}
+
+.seller-info {
+  background: #F7F8F9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 6px 5px 5px rgba(#000, 0.2);
+
+}
+
+.top-level-info {
+  margin-left: 40px;
+}
+
+.seller-picture {
+  border-radius: 10px;
+  width: 150px;
+  height: 220px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  object-fit: cover;
+
+}
+
+.fas.fa-hand-holding-heart {
+  color: #A8475E;
+}
+
+.fas.fa-star {
+  color: gold;
+}
+
+.detail-nr {
+  font-size: 20px;
+  margin-right: 10px;
+  margin-top: 2px;
+  color: rgba(#000, 0.9)
+}
+
+.quick-info {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 330px;
+  // margin-left: 50px;
+}
+
+.details {
+  margin-right: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 8px;
+  p {
+    margin: 0px;
+    color: rgba(#000, 0.5);
+    font-weight: bold;
+  }
+}
+
+.detail-name {
+  font-size: 12px;
+}
+
+.store-pics {
+  border-radius: 10px;
+}
