@@ -14,8 +14,8 @@
       </div>
     </div>
 
-    <div class="product-description col-8">
-      <p class="mb-0"><strong> Sold by </strong><%= link_to @product.user.full_name, store_path(@product.user) %></p>
+    <div class="product-description col-4">
+      <p class="mb-1"><strong> Sold by </strong><%= link_to @product.user.full_name, store_path(@product.user) %></p>
       <h2 class="mb-1"><strong><%= @product.name %></strong></h2>
       <h6 class="mb-1"><%= @product.price %> € </h6>
       <% sum = 0 %>
@@ -39,6 +39,8 @@
           <p class="ml-2">(<%= @product.reviews.count %>)</p>
         </div>
       </div>
+      <% else %>
+      <p>Seller has no reviews yet.</p>
       <% end %>
 
       <%= link_to "Add item to cart", add_to_cart_path(@product), method: :post, class: "btn btn-secondary btn-sm btn-block" %>
@@ -48,9 +50,13 @@
         <div id="map"
         style="width: 480px; height: 190px;"
         data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
+    <div class="product-category">
+      <div class="product-category-design">
+      <%= @product.category.name %></div>
+      <div class="product-subcategory-design">
+        <%= @product.subcategory.name %></div></div>
   </div>
 </div>
 

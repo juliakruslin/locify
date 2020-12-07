@@ -1,8 +1,38 @@
 .product-description {
 font-family: "Montserrat";
 min-width: 500px;
+height: 100%;
+justify-content: space-between;
+position: relative;
+padding-right: 0;
 }
 
+.product-category {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.product-category-design {
+  background-color: lightgray;
+  font-family: "Montserrat";
+  color: black;
+  border-radius: 5px;
+  text-align: left;
+  padding: 1px 5px;
+  margin: 3px 0px;
+  font-size: 11px;
+}
+
+.product-subcategory-design {
+  background-color: lightgray;
+  font-family: "Montserrat";
+  color: black;
+  border-radius: 5px;
+  text-align: left;
+  padding: 1px 5px;
+  font-size: 11px;
+}
 
 .product-info {
 // font-family: 'Bebas Neue', cursive;
