@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :cart_items, through: :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :orders
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_street_number?

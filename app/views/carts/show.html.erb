@@ -58,6 +58,12 @@
 </div>
 <div class="bottom-line">
   <h6><strong>Total order price: </h6></strong>
-  <h6 class="total-price"><strong>€ <%= @cart.total_price.round %></h6></strong>
+  <h6 class="total-price"><strong> <%= humanized_money_with_symbol(@cart.price) %></h6></strong>
+</div>
+<div class="order-btn">
+  <%= form_tag orders_path do %>
+  <%= hidden_field_tag 'cart', @cart.id %>
+  <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+<% end %>
 </div>
 </div>
