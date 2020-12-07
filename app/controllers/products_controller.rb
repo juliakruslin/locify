@@ -68,6 +68,7 @@ class ProductsController < ApplicationController
     @markers = @user.geocoded.map do |user| {
       lat: user.latitude,
       lng: user.longitude,
+      id: user.id,
       infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
       image_url: helpers.asset_url('shop_marker.png')
     }
