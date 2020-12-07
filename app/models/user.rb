@@ -25,4 +25,29 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def average_reviews
+    sum = 0
+    self.products.each do |product|
+      product.reviews.each do |review|
+        sum += review.stars
+      end
+    end
+
+    review_sum = 0
+    self.products.each do |product|
+      review_sum += product.reviews.count
+    end
+    sum
+    @average_rating = sum/review_sum.to_f
+    @average_rating.round(1)
+  end
+
+  def review_sum
+    review_sum = 0
+    self.products.each do |product|
+      review_sum += product.reviews.count
+    end
+    review_sum
+  end
 end

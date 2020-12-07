@@ -1,1 +1,45 @@
-<h2><%= user.first_name %></h2>
+<!-- <div class="seller-marker d-flex flex-column align-items-left"> -->
+
+<div id="markerCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#markerCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#markerCarousel" data-slide-to="1"></li>
+    <li data-target="#markerCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= cl_image_tag user.products.first.photos.first.key %>
+      <div class="carousel-caption d-none d-md-block">
+        <h5> <%= link_to user.products.first.name, product_path(user.products.first), class: "product-marker-name" %></h5>
+      </div>
+    </div>
+    <% user.products.each do |product| %>
+    <div class="carousel-item">
+      <%= cl_image_tag product.photos.first.key %>
+      <div class="carousel-caption d-none d-md-block">
+        <h5> <%= link_to product.name, product_path(product), class: "product-marker-name" %></h5>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#markerCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#markerCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+<h2 class="mb-1"><%= user.full_name %></h2>
+<p class="marker-address mb-1"><i class="fas fa-map-marker-alt"></i> <%= user.full_address %></p>
+<p class="marker-reviews mt-1"><i class="fas fa-star"></i><%= user.average_reviews %> (<%= user.review_sum %>)</p>
+<!-- <p class="marker-products"> <%#= link_to "See all #{user.products.count} products"%> </p> -->
+<!-- </div> -->
+
+
+
+<a href="#" id="marker-products-view">See all <%= user.products.count %> products</a>
+
