@@ -30,7 +30,9 @@ import { initLightbox } from '../plugins/init_lightbox';
 import { loadDynamicBannerText } from '../components/banner';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-import { initChatroomCable } from '../channels/chatroom_channel'
+import { initChatroomCable } from '../channels/chatroom_channel';
+import { initCurrentPosition } from '../plugins/init_currentposition'
+
 
 
 // Internal imports, e.g:
@@ -44,6 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   loadDynamicBannerText();
   initAutocomplete();
+  initCurrentPosition();
   initSweetalert('#delete-product', {
   title: "Are you sure?",
   text: "This action cannot be reversed",
