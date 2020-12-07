@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :cart_items, through: :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :orders
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_street_number?
@@ -24,5 +25,30 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def average_reviews
+    sum = 0
+    self.products.each do |product|
+      product.reviews.each do |review|
+        sum += review.stars
+      end
+    end
+
+    review_sum = 0
+    self.products.each do |product|
+      review_sum += product.reviews.count
+    end
+    sum
+    @average_rating = sum/review_sum.to_f
+    @average_rating.round(1)
+  end
+
+  def review_sum
+    review_sum = 0
+    self.products.each do |product|
+      review_sum += product.reviews.count
+    end
+    review_sum
   end
 end

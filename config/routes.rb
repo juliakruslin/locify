@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show] do
     member do
       get 'profile'
-      get 'messages'
+      get 'orders'
     end
   end
 
@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews, only: [ :new, :create ]
+  end
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: :new
   end
 
   resources :reviews, except: [ :new, :create]

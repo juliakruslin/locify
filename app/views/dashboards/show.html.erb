@@ -39,7 +39,7 @@
       <% end %>
 
       <div class="totalprice">
-        <%= @cart.total_price %>
+        <%= humanized_money_with_symbol(@cart.price) %>
       </div>
     </div>
   </div>

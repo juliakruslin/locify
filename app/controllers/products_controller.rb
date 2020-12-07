@@ -20,6 +20,8 @@ class ProductsController < ApplicationController
       @products = @products.where(user_id: @user_ids)
     end
     map
+
+    @average_reviews = average_reviews
   end
 
   def show
@@ -71,6 +73,7 @@ class ProductsController < ApplicationController
     @markers = @user.geocoded.map do |user| {
       lat: user.latitude,
       lng: user.longitude,
+      id: user.id,
       infoWindow: render_to_string(partial: "info_window", locals: { user: user }),
       image_url: helpers.asset_url('shop_marker.png')
     }
@@ -91,7 +94,25 @@ class ProductsController < ApplicationController
     }
   new_product_params
   end
-end
+
+
+  def average_reviews
+    sum = 0
+    @products.each do |product|
+      product.reviews.each do |review|
+        sum += review.stars
+      end
+    end
+
+    review_sum = 0
+    @products.each do |product|
+      review_sum += product.reviews.count
+    end
+    sum
+    @average_rating = sum/review_sum.to_f
+    @average_rating.round(1)
+  end
+  end
 
 
 

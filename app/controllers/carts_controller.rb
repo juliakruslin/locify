@@ -7,6 +7,7 @@ class CartsController < ApplicationController
 
   def add_to_cart
     chosen_product = Product.find(params[:id])
+    @cart = Cart.new if @cart.status == 'ordered'
     @cart_item = CartItem.find_or_create_by(product: chosen_product, cart: @cart)
     @cart_item.amount += 1
     @cart_item.save
