@@ -5,9 +5,9 @@ const loadDynamicBannerText = () => {
   if (element) {
 
   new Typed('#banner-typed-text', {
-    strings: ["Welcome to Locify", "Earn Karmapoints by shopping locally"],
+    strings: ["Welcome! My name is"],
     typeSpeed: 50,
-    loop: true
+    loop: false
   });
   }
 }

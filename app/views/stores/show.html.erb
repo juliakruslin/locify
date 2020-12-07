@@ -1,4 +1,95 @@
-<h1>Stores#show</h1>
-<p>Find me in app/views/stores/show.html.erb</p>
-<%= @store.first_name %>
-<%= button_to "Chat with store", chatrooms_store_path(@store)  %>
+<div class="body">
+<!-- <div class="top d-flex space-between">
+    <div class="banner">
+      <h1 class="mt-5 mb-4">
+        <span id="banner-typed-text"></span>
+      </h1>
+      <br>
+    </div>
+  -->
+
+  <div class="container seller-container">
+    <div class="seller-info d-flex justify-content-center mt-5">
+      <div class="seller-picture mr-4 "> <%= image_tag "juanpablo.jpg", alt: "alttext", class: "seller-picture" %></div>
+      <div class="top-level-info">
+        <div><h3><%= @store.full_name  %></h3></div>
+        <p><strong>Based in: </strong><%= @store.full_address  %></p>
+        <div class="quick-info d-flex">
+          <div class="details">
+            <p class="detail-name">Products</p>
+            <p class="detail-nr"><%= @store.products.count %></p>
+          </div>
+          <div class="details">
+            <p class="detail-name">Reviews</p>
+            <p class="detail-nr"><%= @reviews.count %></p>
+          </div>
+          <div class="details">
+            <p class="detail-name">Average rating</p>
+            <p class="detail-nr"> <%= @average_rating %></p>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="chat-button mr-4"><%= link_to "Chat with #{@store.first_name}", chatrooms_store_path(@store) %></div>
+          <div class="follow-button"><%= link_to "Follow #{@store.first_name}", chatrooms_store_path(@store) %></div>
+        </div>
+      </div>
+    </div>
+    <div class="seller-detailed-info">
+      <h3 class="mt-5">Who we are</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore commodi, fugiat animi illum possimus, magnam, quidem voluptatem distinctio modi odio illo fugit suscipit quasi harum architecto dolorem sint, aspernatur repudiandae consequatur velit provident culpa quia a aut reprehenderit? Ad cumque officia debitis pariatur accusantium, eum alias, quis quae praesentium asperiores.</p>
+      <h3 class="mt-5">Get to know our store</h3>
+      <%= image_tag "shopowner.jpg", width: "400px", height: "250px", class: "store-pics" %>
+      <h3 class="mt-5">Our products are ...</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, quia. Fugit, provident ipsa, recusandae deserunt a fuga quae quasi, ducimus ab eveniet obcaecati delectus. Explicabo necessitatibus assumenda suscipit neque quod.</p>
+      <!--<p><strong>Favorite product: </strong> <%= link_to @store.products.first.name, product_path(@store.products.first) %></p> -->
+      <% @store.products.each do |product| %>
+      <%= link_to product_path(product), class: "card-link" do %>
+      <div class="card-product">
+        <%= cl_image_tag product.photos.first.key%>
+        <div class="card-product-infos">
+          <h2><%= product.name %></h2>
+          <p> EUR <%= product.price %></p>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+</div>
+
+<!--
+<div class="reviews m-5">
+            <div class="d-flex">
+              <h3 class="mr-5">Reviews</h3>
+              <div class="add-review justify-content-center align-items-center"></div>
+            </div>
+            <ul class="list-group">
+<% @store.products.each do |product|%>
+              <div class="review mt-2 border-top">
+                <div class="stars d-flex pt-2">
+                  <div class="stars-full d-flex">
+                    <% product.reviews.each do |review|%>
+                    <% review.stars.times do %>
+                    <i class="fas fa-star"></i>
+                  </div>
+
+                  <div class="stars-empty d-flex">
+                    <% (5 - review.stars).times do %>
+                    <i class="far fa-star"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="review-description pt-2">
+                  <%= review.description%>
+                  <% end %>
+                      <% end %>
+                    <% end %>
+                </div>
+              </div>
+            </ul>
+          </div>
+
+
+
+        --></div>
+
+
