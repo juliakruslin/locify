@@ -53,15 +53,15 @@
 </div>
 
 <div class="lower-navbar d-flex justify-content-center">
-  <div class="nav-item">
+  <div class="nav-item mx-3">
     <strong> <%= link_to "All Products", products_path, class: "category-name" %></strong>
   </div>
   <% categories.each do |category| %>
   <div class="dropdown show mx-3">
+      <%= link_to category.name, products_path(category: category.name) %>
     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%=  category.name  %>
-  </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    </a>
+    <div class="dropdown-menu mx-1 p-0" aria-labelledby="dropdownMenuLink">
       <% category.subcategories.each do |subcategory| %>
       <%= link_to subcategory.name, products_path(subcategory: subcategory.name), class: "dropdown-item" %>
       <% end %>
