@@ -7,4 +7,8 @@ class DashboardsController < ApplicationController
 
   def profile
   end
+
+  def orders
+    @orders = Order.where(user: current_user)
+  end
 end
