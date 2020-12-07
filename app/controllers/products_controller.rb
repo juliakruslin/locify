@@ -2,7 +2,10 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    if params[:category].present?
+    # TODO: somehow include subcategories in here
+    if params[:subcategory].present?
+      @products = Product.joins(:subcategory).where(subcategories: { name: params[:subcategory] })
+    elsif params[:category].present?
       @products = Product.joins(:category).where(categories: { name: params[:category] })
     else
       @products = Product.all
@@ -17,7 +20,6 @@ class ProductsController < ApplicationController
       @products = @products.where(user_id: @user_ids)
     end
     map
-
   end
 
   def show
@@ -49,6 +51,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params_filtered)
     @product.user = current_user
     @product.category = Category.find(params[:product][:category_id])
+    @product.subcategory = Subcategory.find(params[:product][:subcategory_id])
     if @product.save!
       redirect_to product_path(@product)
     else

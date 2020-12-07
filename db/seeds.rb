@@ -24,6 +24,16 @@ ADDRESSES = [
 categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & Decor", "Fashion & Accessoires", "Sports", "Electronics"]
 # delivery_options = ["Pick-up", "Postal Delivery", "Instant Bike Delivery"]
 
+subcategories = [
+  ["Hair", "Body", "Hygene"],
+  ["Nutrition", "Care", "Baby Clothing"],
+  ["Vegatbles", "Fruits", "Meat"],
+  ["Plants", "Decoration", "Textiles"],
+  ["Clothing", "Accessoires", "Shoes"],
+  ["Sports wear", "Equipment", "Sneakers"],
+  ["Media", "Smartphones", "Laptops"]
+]
+
 # user = User.create!(
 #   email: "lewagon@lewagon.com",
 #   first_name: "Julia",
@@ -31,12 +41,17 @@ categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & D
 #   password: "coolstuffwhatever"
 #   )
 
-  categories.map! do |category|
+  categories.map!.with_index do |category, index|
     category = Category.create(name: category)
-    category
+
+    subcategories[index].map! do |subcategory|
+      Subcategory.create(name: subcategory, category: category)
+    end
+
   end
 
   puts "#{Category.count} categories created!"
+  puts "#{Subcategory.count} subcategories created!"
 
 
 ADDRESSES.each_with_index do |address, index|
@@ -64,12 +79,14 @@ deliveryoptions = [
 
 
   10.times do
+    category = Category.all.sample
     product = Product.create!(
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(sentence_count: 5),
       price: rand(0..500),
       user: store,
-      category: Category.all.sample,
+      category: category,
+      subcategory: category.subcategories.sample
       )
     5.times do
       file = URI.open("https://source.unsplash.com/collection/3590310/300x200")

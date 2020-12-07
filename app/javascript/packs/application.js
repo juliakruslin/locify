@@ -31,6 +31,8 @@ import { loadDynamicBannerText } from '../components/banner';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initChatroomCable } from '../channels/chatroom_channel'
+import { initFilterSubcategory } from '../plugins/init_subcategory';
+
 
 
 // Internal imports, e.g:
@@ -44,6 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   loadDynamicBannerText();
   initAutocomplete();
+  initFilterSubcategory();
   initSweetalert('#delete-product', {
   title: "Are you sure?",
   text: "This action cannot be reversed",
