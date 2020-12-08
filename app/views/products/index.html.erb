@@ -2,14 +2,37 @@
   <div class="big-container">
     <div class="row ml-2">
       <div class="col-8">
-        <div id="price-filter">
-          <input type="button" class="price-filter" name="answer" value="Filters" onclick="showDiv()" />
-          <div id="show-price-filter" style="display:none;">
-            <%= form_tag products_path, method: :get do %>
-            <%= hidden_field_tag :query, params[:query] %>
-            <%= hidden_field_tag :location, params[:location] %>
-            <%= hidden_field_tag :category, params[:category] %>
 
+          <%= form_tag products_path, method: :get do %>
+          <%= hidden_field_tag :query, params[:query] %>
+          <%= hidden_field_tag :location, params[:location] %>
+          <%= hidden_field_tag :category, params[:category] %>
+
+        <div class="filters d-flex justify-content-between">
+          <div class="price-filter">
+          <input type="button" name="answer" value="Filter for price" onclick="showFilter()" />
+          <div id="show-price-filter" style="display:none;">
+            <div class="price-filter d-flex">
+              <div class="input-group price mb-3">
+                <div class="input-group-prepend price">
+                  <span class="input-group-text euro-sign">€</span>
+                </div>
+                <input type="number" min=0 name="min_price" id="min_price" class="form-control" placeholder="Min">
+              </div>
+              <div class="input-group mb-3">
+              <input type="number" min=0 name="max_price" id="max_price" class="form-control" placeholder="Max">
+            </div>
+            <div>
+              <%= button_tag(type: "submit", class: "btn btn-default") do %>
+              <i class="fas fa-search"></i>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+          <div class="category-filter mt-4">
             <% if params[:category].present? %>
             <% category = Category.find_by_name(params[:category]) %>
             <% category.subcategories.each_with_index do |subcategory, index| %>
@@ -18,42 +41,17 @@
                 <%= check_box_tag "subcategories[]", subcategory.id %>
                 <%= label_tag subcategory.name %>
               </div>
-            <!--   <input class="form-check-input" type="checkbox" id="inlineCheckbox<%= index + 1 %>" value="<%= subcategory.id %>">
-              <label class="form-check-label" for="inlineCheckbox1"><%= subcategory.name %></label> -->
             </div>
             <% end %>
             <% end %>
-
-
-
-
-
-
-            <div class="searchbar d-flex">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">€</span>
-                </div>
-                <input type="number" name="min_price" id="min_price" class="form-control" placeholder="Min">
-              </div>
-              <div class="input-group mb-3">
-                <input type="number" name="max_price" id="max_price" class="form-control" placeholder="Max">
-              </div>
-              <div>
-                <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                <i class="fas fa-search"></i>
-                <% end %>
-                <% end %>
-              </div>
-            </div>
           </div>
-        </div>
+      </div>
 
 
 
 
-        <div class="product-cards mt-4">
-          <h1 class="mb-2"><strong>Our products</strong></h1>
+      <div class="product-cards mt-4">
+        <h1 class="mb-2"><strong>Our products</strong></h1>
           <% @products.each do |product| %>
           <div class="card-product m-2">
             <%= cl_image_tag product.photos.first.key if product.photos.attached? %>
@@ -79,7 +77,7 @@
 
 
           <script>
-            function showDiv() {
+            function showFilter() {
              var x = document.getElementById("show-price-filter");
              if (x.style.display === "none") {
               x.style.display = "block";
