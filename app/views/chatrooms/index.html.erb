@@ -1,6 +1,13 @@
 <div class="row">
-  <div class="col-2"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
-  <div class="col-10"></div>
+  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
+  <div class="col-6 message-area">
+    <div class="message-area-text">
+      <div class="chat-svg-style">
+        <%= image_tag "chat.svg", alt: "alttext" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3"></div>
 </div>
 
 
