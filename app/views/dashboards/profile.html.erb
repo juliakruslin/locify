@@ -1,19 +1,8 @@
 <div class="container">
-  <div class="dashboard-show-content">
-    <div class="side-bar">
-      <div class="col-3">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-home" aria-selected="true">Cart</a>
-          <%= link_to "Profile", profile_dashboard_path, class:"nav-link active", id:"v-pills-profile-tab", role:"tab" %>
-          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-          <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-          <% if current_user.seller_approved == true %>
-          <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">listings</a>
-          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-          <% end %>
-        </div>
+  <div class="row mt-5">
+      <div class="col-2">
+        <%= render "sidebar" %>
       </div>
-    </div>
 
     <div class="center-content">
       <h3><strong>Change profile</strong></h3>
