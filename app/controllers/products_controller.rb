@@ -1,14 +1,17 @@
 class ProductsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     # TODO: somehow include subcategories in here
+    @products = Product.all
     if params[:subcategory].present?
-      @products = Product.joins(:subcategory).where(subcategories: { name: params[:subcategory] })
+      @products = @products.joins(:subcategory).where(subcategories: { name: params[:subcategory] })
     elsif params[:category].present?
-      @products = Product.joins(:category).where(categories: { name: params[:category] })
-    else
-      @products = Product.all
+      @products = @products.joins(:category).where(categories: { name: params[:category] })
+    end
+
+    if params[:subcategories].present?
+      @products = Product.joins(:subcategory).where(subcategories: { id: params[:subcategories] })
     end
 
     if params[:lon].present? && params[:lat].present?
@@ -23,6 +26,10 @@ class ProductsController < ApplicationController
     if params[:location].present?
       @user_ids = User.near(params[:location], 10).map(&:id)
       @products = @products.where(user_id: @user_ids)
+    end
+
+    if params[:min_price].present? || params[:max_price].present?
+      @products = @products.where("price >= ? AND price <= ?", params[:min_price].to_f, params[:max_price].to_f)
     end
     map
 
