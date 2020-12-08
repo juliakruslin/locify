@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     end
 
     if params[:lon].present? && params[:lat].present?
-      @user_ids = User.near([params[:lat], params[:lon]], 10).map(&:id)
+      @user_ids = User.near([params[:lat], params[:lon]], 3).map(&:id)
       @products = @products.where(user_id: @user_ids)
     end
 
