@@ -1,0 +1,25 @@
+.message-card {
+  margin-left: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin-top: 10px;
+  padding: 10px 10px;
+}
+
+.message-card ul {
+  padding-left: 0;
+
+  li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding: 12px 5px;
+    width: 300px;
+  }
+}
+
+.message-card-avatar {
+  padding: 10px;
+  background: blue;
+  border-radius: 50%;
+  color: white;
+
+}

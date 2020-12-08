@@ -19,10 +19,11 @@ Rails.application.routes.draw do
 
   resources :stores, only: [:show], as: 'store' do
     member do
-      post 'chat', to: 'chatrooms#show'
-      post 'chatrooms', to: "chatrooms#create"
+      get 'chat', to: 'chatrooms#create'
     end
   end
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 
   resources :products do
     resources :reviews, only: [ :new, :create ]
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :reviews, except: [ :new, :create]
 
-  resources :chatrooms, only: [:show, :index] do
+  resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
   end
 
