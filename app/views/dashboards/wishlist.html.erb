@@ -1,0 +1,13 @@
+<h1> <%= current_user.first_name %>'s wishlist</h1>
+
+<% current_user.wishlist_products.each do |product| %>
+  <%= link_to product_path(product), class: "card-link" do %>
+<div class="card-product m-2">
+  <%= cl_image_tag product.photos.first.key%>
+  <div class="card-product-infos">
+    <h2><%= product.name %></h2>
+  </div>
+</div>
+<% end %>
+  <%#= product.name %>
+<% end %>

@@ -8,8 +8,11 @@ Rails.application.routes.draw do
     member do
       get 'profile'
       get 'orders'
+      get 'wishlist'
     end
   end
+
+  post "/add_item_wishlist/:id", to: "products#add_to_wishlist", as: "add_to_wishlist"
 
   resources :stores, only: [:show], as: 'store' do
     member do

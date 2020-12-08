@@ -64,7 +64,13 @@ class ProductsController < ApplicationController
     else
       render "new"
     end
+  end
 
+  def add_to_wishlist
+    chosen_product = Product.find(params[:id])
+    @user = current_user
+    current_user.wishlist_products << chosen_product #unless wishlist_products.include?(chosen_product)
+    redirect_to product_path(chosen_product), notice: "Product has been added to wishlist"
   end
 
   def destroy

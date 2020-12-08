@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :category
   belongs_to :subcategory
+  # has_and_belongs_to_many
 
   has_many :delivery_options, dependent: :destroy
   accepts_nested_attributes_for :delivery_options

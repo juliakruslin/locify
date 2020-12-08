@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :cart_items, through: :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :orders
+  has_and_belongs_to_many :wishlist_products, class_name: 'Product', join_table: :wishlists
 
   geocoded_by :full_address
   after_validation :geocode, if: :will_save_change_to_street_number?
