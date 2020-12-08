@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :category
   belongs_to :subcategory
+  # has_and_belongs_to_many
 
   has_many :delivery_options, dependent: :destroy
   accepts_nested_attributes_for :delivery_options
@@ -18,7 +19,7 @@ class Product < ApplicationRecord
 
  include PgSearch::Model
   pg_search_scope :global_search,
-    against: [:name, :description],
+    against: [:name, :description,],
     associated_against: {
       user: [:first_name, :last_name]
     },

@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     end
 
     if params[:lon].present? && params[:lat].present?
-      @user_ids = User.near([params[:lat], params[:lon]], 10).map(&:id)
+      @user_ids = User.near([params[:lat], params[:lon]], 3).map(&:id)
       @products = @products.where(user_id: @user_ids)
     end
 
@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
     @cart = Cart.new
     @user = User.all.where(seller_approved: true)
     map
+    @product_in_wishlist = current_user.wishlist_products.any? { |product| product == @product }
   end
 
   def edit
@@ -64,7 +65,23 @@ class ProductsController < ApplicationController
     else
       render "new"
     end
+  end
 
+  def add_to_wishlist
+    chosen_product = Product.find(params[:id])
+    @user = current_user
+    if current_user.wishlist_products.any? { |product| product == chosen_product }
+      redirect_to product_path(chosen_product), notice: "Product already in wishlist"
+    else
+      current_user.wishlist_products << chosen_product
+      redirect_to product_path(chosen_product), notice: "Product has been added to wishlist"
+    end
+  end
+
+  def delete_from_wishlist
+    @product = Product.find(params[:id])
+    current_user.wishlist_products.destroy(@product)
+    redirect_to product_path(@product), notice: "Product has been deleted from wishlist"
   end
 
   def destroy
@@ -91,15 +108,13 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :description, :price, :category_id, photos: [], delivery_options_attributes: [:name, :price])
   end
 
-
   def product_params_filtered
     new_product_params = product_params
     new_product_params[:delivery_options_attributes].reject!{ |key, delivery_options|
       !delivery_options[:name].in?(params[:offered_delivery_options].keys)
     }
-  new_product_params
+    new_product_params
   end
-
 
   def average_reviews
     sum = 0
@@ -117,5 +132,3 @@ class ProductsController < ApplicationController
     @average_rating.round(1)
   end
 end
-
-
