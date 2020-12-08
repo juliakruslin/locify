@@ -1,0 +1,56 @@
+.message-area {
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  padding: 0;
+  margin-top: 10px;
+  min-height: 50vh;
+}
+
+.message-area-text {
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 50px;
+}
+
+.chat-box {
+  background: #F0F0F0;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  input {
+    border-radius: 20px;
+    border: none;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .form-group {
+    margin-bottom: 0px;
+  }
+}
+
+.message-container {
+  display: flex;
+  margin-bottom: 5px;
+  p {
+    margin-bottom: 0;
+    display: inline-block;
+    padding: 5px 5px;
+    border-radius: 5px;
+    background: #EDCBB1;
+    min-width: 50px;
+  }
+  .message-ts {
+    color: #8C8C8C;
+    font-size: 7px;
+  }
+}
+
+.right {
+  justify-content:  flex-end;
+  p {
+    background: #628395;
+    // Whatsapp green: #DDF8C6
+  }
+  .message-ts {
+    color: white;
+  }
+}
