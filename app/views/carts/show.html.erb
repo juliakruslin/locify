@@ -28,6 +28,9 @@
           <div class="cart-item-single-price d-flex align-items-center text-right m-3">
             € <%= cart_item.product.price.round%>
           </div>
+          <div class="cart-item-single-price d-flex align-items-center text-right m-3">
+            <%= cart_item.product.delivery_options.sample.name%>
+          </div>
           <div class="cart-item-complete-amount d-flex align-items-center m-3">
            <div class="cart-item-amount-down m-1 border">
             <%=  link_to decrease_amount_path(cart_item), method: :post, remote: true do %>
