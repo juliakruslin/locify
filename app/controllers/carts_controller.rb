@@ -12,7 +12,7 @@ class CartsController < ApplicationController
     @cart_item.amount += 1
     @cart_item.save
     @cart.calculate_total_price
-    redirect_to product_path(chosen_product), notice: "Product has been added to cart"
+    redirect_back(fallback_location: root_url, notice: "Product has been added to cart")
   end
 
   def edit
