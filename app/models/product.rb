@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   belongs_to :user
   # belongs_to :cart_item
   #has_many :delivery_options
@@ -29,5 +30,4 @@ class Product < ApplicationRecord
     # def subcategory_part_of_category
     #   errors.add(:category, "subcategory not part of category") unless subcategory.category == category
     # end
-
 end

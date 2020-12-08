@@ -8,4 +8,34 @@
   top: 0;
 }
 
+.input-group {
+  max-width: 120px;
+  margin-right: 5px;
+  height: 20px;
+}
 
+.input-group-text {
+  background-color: rgba(#A8475E,0.2);
+  color: rgba(#000,0.3)
+}
+
+
+input[type=button] {
+  background-color: #A8475E;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 12px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.price-search {
+color: green;
+height: 20px;
+
+}
