@@ -76,9 +76,3 @@
 .avatar {
 }
 
-@media all and (min-width: 992px) {
-  .lower-navbar .nav-item .dropdown-menu{ display: none; }
-  .lower-navbar .nav-item:hover .nav-link{ color: #fff;  }
-  .lower-navbar .nav-item:hover .dropdown-menu{ display: block; }
-  .lower-navbar .nav-item .dropdown-menu{ margin-top:0; }
-}
