@@ -50,6 +50,22 @@
   width: 50px;
 }
 
-// .button-banner {
-//   background-color: #a8475e;
-// }
+.current-position i {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+
+.current-position a {
+ color: rgba(#000,0.6);
+ i:hover {
+  color: black;
+  transform: scale(1.1, 1.1)
+ }
+}
+
+.current-position a:hover {
+  color: black;
+  transform: scale(1.1, 1.1)
+ }
