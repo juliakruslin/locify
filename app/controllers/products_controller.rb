@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
+    if params[:lon].present? && params[:lat].present?
+      @user_ids = User.near([params[:lat], params[:lon]], 10).map(&:id)
+      @products = @products.where(user_id: @user_ids)
+    end
+
     if params[:query].present?
       @products = @products.global_search(params[:query])
     end
@@ -98,7 +103,6 @@ class ProductsController < ApplicationController
         sum += review.stars
       end
     end
-
     review_sum = 0
     @products.each do |product|
       review_sum += product.reviews.count
@@ -107,7 +111,6 @@ class ProductsController < ApplicationController
     @average_rating = sum/review_sum.to_f
     @average_rating.round(1)
   end
-  end
-
+end
 
 

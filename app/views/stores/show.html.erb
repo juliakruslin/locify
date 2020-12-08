@@ -10,7 +10,9 @@
 
   <div class="container seller-container">
     <div class="seller-info d-flex justify-content-center mt-5">
-      <div class="seller-picture mr-4 "> <%= image_tag "juanpablo.jpg", alt: "alttext", class: "seller-picture" %></div>
+      <% if @store.avatar.attached? %>
+      <div class="seller-picture mr-4 "> <%= cl_image_tag @store.avatar.key, alt: "profilepic", class: "seller-picture" %></div>
+      <% end %>
       <div class="top-level-info">
         <div><h3><%= @store.full_name  %></h3></div>
         <p><strong>Based in: </strong><%= @store.full_address  %></p>
