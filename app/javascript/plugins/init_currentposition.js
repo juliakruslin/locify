@@ -7,6 +7,7 @@ currentPosition.addEventListener("click", (event) => {
   navigator.geolocation.getCurrentPosition((data) => {
     const lat = data.coords.latitude;
     const lon = data.coords.longitude;
+    window.location = `${window.location}/products?lat=${lat}&lon=${lon}`
   });
 });
 };

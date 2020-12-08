@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+  has_one_attached :avatar
+  has_many_attached :photos
   has_many :chatrooms, dependent: :destroy
   has_many :store_chatrooms, class_name: 'Chatroom', inverse_of: :store, dependent: :destroy
   has_many :products, dependent: :destroy

@@ -17,6 +17,7 @@
 
     <div class="center-content">
       <h3><strong>Change profile</strong></h3>
+      <%= cl_image_tag current_user.avatar.key, width: 200  %>
       <div class="simple-border-card">
         <div class="welcome-user-card-info">
           <h5><strong>This is you</strong><% if current_user.seller_approved == true %><div class="badge alert-succes" role="alert">You are a seller</div><% end %></h5>
