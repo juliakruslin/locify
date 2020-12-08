@@ -22,7 +22,7 @@ ADDRESSES = [
   {street_name: 'Spiegelgracht', street_number: '10', city: 'Amsterdam', postal_code: '1017 JR'},
 ]
 categories = ["Beauty & Wellness", "Baby & Child", "Food & Beverages", "Home & Decor", "Fashion & Accessoires", "Sports", "Electronics"]
-# delivery_options = ["Pick-up", "Postal Delivery", "Instant Bike Delivery"]
+DELIVERY_OPTIONS = ["Pick-up", "Postal Delivery", "Instant Bike Delivery"]
 
 subcategories = [
   ["Hair", "Body", "Hygene"],
@@ -70,14 +70,6 @@ ADDRESSES.each_with_index do |address, index|
   p "#{Product.count} products created"
 
 
-
-deliveryoptions = [
-    DeliveryOption.create(name: "Pick-up", price: "0"),
-    DeliveryOption.create(name: "Delivery", price: "3.95"),
-    DeliveryOption.create(name: "Instant Bike Delivery", price: "4.95")
-    ]
-
-
   10.times do
     category = Category.all.sample
     product = Product.create!(
@@ -93,13 +85,14 @@ deliveryoptions = [
       product.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     end
 
-    deliveryoptions.first(rand(1..3)).each_with_index do |deliveryoption, index|
-      deliveryoption.product = product
-      deliveryoption.save
-      puts "Creating deliveryoption #{index + 1} for #{product.name}"
+    random = rand(1..3)
+    random.times do |num|
+      option = DeliveryOption.create(name: DELIVERY_OPTIONS[num], price: rand(1..10))
+      option.product = product
+      option.save
     end
 
-  puts "#{DeliveryOption.count} delivery options created!"
+  puts "#{DeliveryOption.count} delivery options created for #{product.name}!"
 
 
 
