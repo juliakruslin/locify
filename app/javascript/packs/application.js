@@ -33,6 +33,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initChatroomCable } from '../channels/chatroom_channel'
 import { initFilterSubcategory } from '../plugins/init_subcategory';
 import { initCurrentPosition } from '../plugins/init_currentposition'
+// import { initDisableButton } from '../plugins/init_wishlist'
 
 
 // Internal imports, e.g:
@@ -48,6 +49,7 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initFilterSubcategory();
   initCurrentPosition();
+  // initDisableButton();
 
   initSweetalert('#delete-product', {
   title: "Are you sure?",
