@@ -3,22 +3,39 @@
     <div class="col-2">
       <%= render "sidebar" %>
     </div>
-
-    <h1>#<%= @chatroom.name %></h1>
-    <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-      <% @chatroom.messages.each do |message| %>
-      <div class="message-container" id="message-<%= message.id %>">
-        <i class="author">
-          <span><%= message.user.first_name %></span>
-          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p><%= message.content %></p>
-      </div>
+    
+<div class="row">
+  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %> </div>
+  <div class="col-6 message-area">
+    <div class="message-area-text">
+      <% if current_user.first_name != @chatroom.store.first_name %>
+      <h1><%= @chatroom.store.full_name %></h1>
+      <% else %>
+      <% @store_chatrooms.each do |chatroom| %>
+      <h1><%= chatroom.user.full_name %></h1>
       <% end %>
-    </div>
-    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-    <% end %>
+      <% end %>
 
-  </div>
-</div>
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+        <% @chatroom.messages.each do |message| %>
+        <div class="message-container <%= 'right' if current_user == message.user %>" id="message-<%= message.id %>">
+          <!-- <i class="author"> -->
+            <!-- <span><%#= message.user.first_name %></span> -->
+            <!-- <small><%#= message.created_at.strftime("%a %b %e at %l:%M%p") %></small> -->
+            <!-- </i> -->
+            <!-- <div class="message<%#= 'right' if current_user == message.user %>"> -->
+              <p><%= message.content %> <span class="message-ts"><%= message.created_at.strftime("%l:%M%p") %></span></p>
+              <!-- <small><%#= message.created_at.strftime("%a %b %e at %l:%M%p") %></small> -->
+              <!-- </div> -->
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="chat-box">
+          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+          <%= f.input :content, label: false, placeholder: "Type a message" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-3"></div>
+    </div>

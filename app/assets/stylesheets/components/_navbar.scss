@@ -48,11 +48,13 @@
   flex-grow: 1;
   border-radius: 40px;
   max-width: 400px;
+  height: 30px;
 }
 
 .form-control.product-search-nav {
-  border: 0.5px solid #a8475e;
+  border: 0.1px solid #grey;
   font-size: 12px;
+  width: 300px;
 }
 
 .fas.fa-shopping-cart {
@@ -73,12 +75,10 @@
   margin: 3px;
 }
 
-.avatar {
-}
-
-@media all and (min-width: 992px) {
-  .lower-navbar .nav-item .dropdown-menu{ display: none; }
-  .lower-navbar .nav-item:hover .nav-link{ color: #fff;  }
-  .lower-navbar .nav-item:hover .dropdown-menu{ display: block; }
-  .lower-navbar .nav-item .dropdown-menu{ margin-top:0; }
+button {
+  background: none;
+  border: none;
+  i {
+    color: lightgrey;
+  }
 }

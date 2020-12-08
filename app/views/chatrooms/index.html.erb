@@ -1,11 +1,13 @@
-<h1>My messages</h1>
-<ul>
-  <% @chatrooms.each do |chatroom| %>
-  <li><%= chatroom %> <%= link_to "Chatroom", chatroom_path(chatroom)  %> </li>
-  <% end %>
-</ul>
-<ul>
-  <% @store_chatrooms.each do |chatroom| %>
-  <li><%= chatroom %> <%= link_to "Chatroom", chatroom_path(chatroom)  %> </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
+  <div class="col-6 message-area">
+    <div class="message-area-text">
+      <div class="chat-svg-style">
+        <%= image_tag "chat.svg", alt: "alttext" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>
+
+

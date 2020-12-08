@@ -1,0 +1,28 @@
+  <% random_color = ['#B07D6D', '#042A2B', '#EDCBB1', '#628395', '#42658A'] %>
+  <div class="message-card">
+  <h1>My chats</h1>
+    <ul>
+      <% @chatrooms.each_with_index do |chatroom, index| %>
+      <li>
+        <% if chatroom.store.avatar.attached? %>
+        <%= cl_image_tag chatroom.store.avatar.key, width: 400, height: 400, crop: :crop, radius: :max, gravity: :face, class:"avatar" %>
+        <% else %>
+        <a href="" class="message-card-avatar" style="background:<%= random_color[index] %>"><%= chatroom.store.first_name[0]%><%=  chatroom.store.last_name[0] %></a>
+        <% end %>
+        <%= link_to chatroom.store.full_name, chatroom_path(chatroom)  %>
+      </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% @store_chatrooms.each do |chatroom| %>
+      <li>
+        <% if chatroom.user.avatar.attached? %>
+        <%= cl_image_tag chatroom.user.avatar.key, width: 400, height: 400, crop: :crop, radius: :max, gravity: :face, class:"avatar" %>
+        <% else %>
+        <a href="" class="message-card-avatar" style="background:<%= random_color.sample %>"><%= chatroom.user.first_name[0]%><%=  chatroom.user.last_name[0] %></a>
+        <% end %>
+        <%= link_to chatroom.user.full_name, chatroom_path(chatroom)  %>
+      </li>
+      <% end %>
+    </ul>
+  </div>

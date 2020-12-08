@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   belongs_to :user
   # belongs_to :cart_item
   #has_many :delivery_options
@@ -19,7 +20,7 @@ class Product < ApplicationRecord
 
  include PgSearch::Model
   pg_search_scope :global_search,
-    against: [:name, :description],
+    against: [:name, :description,],
     associated_against: {
       user: [:first_name, :last_name]
     },
@@ -30,5 +31,4 @@ class Product < ApplicationRecord
     # def subcategory_part_of_category
     #   errors.add(:category, "subcategory not part of category") unless subcategory.category == category
     # end
-
 end
