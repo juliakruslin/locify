@@ -1,21 +1,42 @@
-<h1> <%= current_user.first_name %>'s wishlist</h1>
+<div class="container">
+  <div class="wishlist-header mb-5 mt-5 border-bottom">
+    <h3> <%= current_user.first_name %>'s wishlist</h3>
+    <p>You have <strong><%= current_user.wishlist_products.count %> product</strong> in your wishlist. </p></div>
 
-<div class="wishlist-product d-flex align-items">
+<div class="wishlist-body space-between">
   <% current_user.wishlist_products.each do |product| %>
-    <%= link_to product_path(product), class: "card-link" do %>
-      <div class="card-product m-2">
-        <%= cl_image_tag product.photos.first.key%>
-          <div class="card-product-infos">
-           <h2><%= product.name %></h2>
-           <p><%= product.price %> </p>
+    <div class="wishlist-item border-bottom" >
+      <div class="d-flex align-items-center text-left text-md-center row">
+        <div class="wishlist-item-img">
+          <!-- TODO: link to single product has to be fixed -->
+          <!-- TODO: perhaps fix reloading of page with javascript -->
+          <%= link_to product_path(product), class: "card-link" do %>
+            <%= cl_image_tag product.photos.first.key%>
+        </div>
+        <div class="wishlist-item-title text-left m-3" style="width: 300px">
+          <%= product.name %>
+        </div>
+          <% end %>
+        <div class="wishlist-item-info d-flex align-items-center row">
+          <div class="wishlist-item-single-price d-flex align-items-center text-right m-3">
+            € <%= product.price.round%>
           </div>
-      </div>
+
+          <div class="add-to-cart-button">
+            <%= link_to add_to_cart_path(product), method: :post do %>
+            <i class="fas fa-cart-plus"></i>
+            <% end %>
+          </div>
+
+        <div class="wishlist-item-delete d-flex align-items-center m-3" id="trash">
+          <%= link_to delete_in_wishlist_path(product), method: :delete do %>
+            <i class="fas fa-times"></i>
         <% end %>
-      <div class="delete-product">
-        <%= link_to delete_in_wishlist_path(product), method: :delete do %>
-          <i class="fas fa-times"></i>
-        <% end %>
+        </div>
       </div>
+    </div>
+  </div>
   <% end %>
+</div>
 </div>
 
