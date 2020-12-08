@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   has_many_attached :photos
   has_many :reviews, dependent: :destroy
   belongs_to :category
+  belongs_to :subcategory
 
   has_many :delivery_options, dependent: :destroy
   accepts_nested_attributes_for :delivery_options
@@ -13,6 +14,7 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
+  # validate :subcategory_part_of_category
 
  include PgSearch::Model
   pg_search_scope :global_search,
@@ -23,4 +25,9 @@ class Product < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+    # def subcategory_part_of_category
+    #   errors.add(:category, "subcategory not part of category") unless subcategory.category == category
+    # end
+
 end

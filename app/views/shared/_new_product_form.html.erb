@@ -16,6 +16,7 @@
   <% end %>
 
   <%= f.association :category %>
+  <%= f.input :subcategory_id, collection: Subcategory.all.map{ |l| [l.name, l.id, {name: l.name.downcase}] } %>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { minlength: 1, maxlength: 5, multiple: true } %>
   <%= f.button :submit, class: "btn-primary" %>
