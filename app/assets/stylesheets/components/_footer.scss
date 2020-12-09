@@ -5,17 +5,18 @@
 }
 
 .footer-container {
+  background-color: grey;
+  color: white;
+  padding: 5px;
+  a {
   margin-top: 20px;
   background-color: grey;
   color: white;
+  }
+  p {
+    margin-bottom: auto;
+  }
 }
-
-.footer-container a {
-  margin-top: 20px;
-  background-color: grey;
-  color: white;
-}
-
 // .socials a {
 //   color: white;
 // }
