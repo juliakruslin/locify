@@ -37,9 +37,11 @@
             <% category = Category.find_by_name(params[:category]) %>
             <% category.subcategories.each_with_index do |subcategory, index| %>
             <div class="form-check form-check-inline">
-              <div class= "align-items-center">
+              <div class= "subcategory-check d-flex align-items-center">
                 <%= check_box_tag "subcategories[]", subcategory.id %>
+              <div class="subcategory-text">
                 <%= label_tag subcategory.name %>
+                </div>
               </div>
             </div>
             <% end %>
