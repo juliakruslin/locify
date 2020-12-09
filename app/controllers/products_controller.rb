@@ -44,8 +44,17 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @cart = Cart.new
-    @user = User.all.where(seller_approved: true)
-    map
+    @user = @product.user
+    @user.geocode
+    @marker =
+      [{
+      lat: @user.latitude,
+      lng: @user.longitude,
+      id: @user.id,
+      infoWindow: render_to_string(partial: "info_window", locals: { user: @user }),
+      image_url: helpers.asset_url('shop_marker.png')
+    }]
+
     @product_in_wishlist = current_user.wishlist_products.any? { |product| product == @product }
   end
 
@@ -102,8 +111,10 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  private
+
   def map
-    @user = User.all.where(seller_approved: true)
+    @user = User.seller
     @markers = @user.geocoded.map do |user| {
       lat: user.latitude,
       lng: user.longitude,
@@ -114,7 +125,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  private
 
   def product_params
     params.require(:product).permit(:name, :description, :price, :category_id, photos: [], delivery_options_attributes: [:name, :price])
