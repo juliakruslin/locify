@@ -5,7 +5,7 @@
 
 .cart-item-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .cart-item-img img {
@@ -71,13 +71,7 @@
 }
 
 .cart-item-delete {
-  justify-content: flex-end;
 }
-
-// .first-line {
-//   justify-content: space-between;
-//   margin-top: 10px;
-// }
 
 .fas.fa-trash {
   color: #a8475e;
