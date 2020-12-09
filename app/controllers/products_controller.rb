@@ -14,6 +14,11 @@ class ProductsController < ApplicationController
       @products = Product.joins(:subcategory).where(subcategories: { id: params[:subcategories] })
     end
 
+    if params[:delivery_option].present?
+      product_ids = DeliveryOption.where(name: params[:delivery_option]).pluck(:product_id)
+      @products = @products.where(id: product_ids)
+    end
+
     if params[:lon].present? && params[:lat].present?
       @user_ids = User.near([params[:lat], params[:lon]], 3).map(&:id)
       @products = @products.where(user_id: @user_ids)

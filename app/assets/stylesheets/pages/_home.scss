@@ -1,4 +1,11 @@
 // Specific CSS for your home-page
+.the-home-page {
+}
+
+.first-section {
+  margin-bottom: 41vh;
+}
+
 .banner {
   background-color: #blue;
 }
@@ -69,3 +76,41 @@
   color: black;
   transform: scale(1.1, 1.1)
  }
+
+ .our-usps {
+  background: #F1DFD5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 260px;
+  padding: 0 200px;
+ }
+
+.our-usp-item {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  padding: 10px;
+  i {
+    color: gray;
+    background: white;
+    font-size: 60px;
+    border: 1px solid #D8C8BF;
+    border-radius: 55%;
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+  h5 {
+    color: black;
+  }
+  .fa-shipping-fast {
+    padding: 30px 25px;
+  }
+}
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+<h1>Your sold products</h1>
+
+<% current_user.cart_items_as_owner.each do |cart_item|%>
+<%= cart_item.product.name %>
+<%= cart_item.cart.status %>
+<% end %>
+
+
+
+<% current_user.products.each do |product| %>
+<%= product.name %>
+<% end %>

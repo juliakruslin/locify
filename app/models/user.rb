@@ -4,12 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_one_attached :avatar
   has_many_attached :photos
   has_many :chatrooms, dependent: :destroy
   has_many :store_chatrooms, class_name: 'Chatroom', inverse_of: :store, dependent: :destroy
   has_many :products, dependent: :destroy
+
+  has_many :cart_items_as_owner, through: :products, source: :cart_items
+
   has_many :carts, dependent: :destroy
   has_many :cart_items, through: :carts, dependent: :destroy
   has_many :reviews, dependent: :destroy
