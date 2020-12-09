@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-2">
+<div class="container ml-0 pl-0">
+  <div class="row mt-5 ml-0 pl-0">
+      <div class="col-2 ml-0 pl-0">
       <%= render "sidebar" %>
     </div>
 
@@ -11,32 +11,29 @@
 
         <div class="wishlist-body">
           <% current_user.wishlist_products.each do |product| %>
-          <div class="wishlist-item border-bottom" >
-            <div class="d-flex align-items-center text-left text-md-center row">
+          <div class="wishlist-item d-flex align-items-center text-left text-md-center" >
               <div class="wishlist-item-img col-2">
-                <!-- TODO: link to single product has to be fixed -->
-                <!-- TODO: perhaps fix reloading of page with javascript -->
                 <%= link_to product_path(product), class: "card-link" do %>
                 <%= cl_image_tag product.photos.first.key%>
+              <% end %>
               </div>
-              <div class="wishlist-item-title text-left col-2">
+              <div class="cart-item-title text-left col-2">
                 <%= product.name %>
               </div>
-              <% end %>
-              <div class="wishlist-item-info d-flex align-items-centercol-8">
+              <div class="wishlist-item-info d-flex align-items-center col-8">
                 <div class="wishlist-item-single-price d-flex col-1">
                   € <%= product.price.round%>
                 </div>
-                <div class="wishlist-item-delivery-option">
+                <div class="wishlist-item-delivery-option d-flex align-items-center col-2">
                 <%= product.delivery_options.sample.name %>
                 </div>
-                <div class="add-to-cart-button">
+                <div class="add-to-cart-button d-flex align-items-center col-3">
                   <%= link_to add_to_cart_path(product), method: :post do %>
                   <i class="fas fa-cart-plus"></i>
                   <% end %>
                 </div>
 
-                <div class="wishlist-item-delete d-flex align-items-center m-3" id="trash">
+                <div class="wishlist-item-delete d-flex align-items-center col-2" id="trash">
                   <%= link_to delete_in_wishlist_path(product), method: :delete do %>
                   <i class="fas fa-times"></i>
                   <% end %>
@@ -45,7 +42,6 @@
             </div>
           </div>
           <% end %>
-        </div>
       </div>
     </div>
   </div>

@@ -4,9 +4,12 @@
       <%#= render "sidebar" %>
     </div>
      -->
-<div class="row">
-  <div class="col-2"><%= render 'dashboards/sidebar' %></div>
-  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
+<div class="container ml-0 pl-0">
+  <div class="row mt-5 ml-0 pl-0">
+      <div class="col-2 ml-0 pl-0">
+        <%= render "dashboards/sidebar" %>
+      </div>
+  <div class="col-4"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
   <div class="col-6 message-area">
     <div class="message-area-text">
       <% if current_user.first_name != @chatroom.store.first_name %>

@@ -1,22 +1,28 @@
 <nav id="sidebar">
-  <ul class="list-unstyled components">
-    <p>Dashboard</p>
-    <li class="active"></li>
+  <div class="background-img text-center py-4">
+    <% if current_user.avatar.attached? %>
+          <%= cl_image_tag current_user.avatar.key, width: 400, height: 400, crop: :crop, radius: :max, gravity: :face, class:"avatar sidebar", id:"navbarDropdown", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" }%>
+          <% else %>
+          <a href="" class="nav-link dropdown-toggle icon" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name[0]%><%=  current_user.last_name[0] %></a>
+          <% end %>
+    <h5 class="sidebar-name"><a href="/dashboard/profile"><%= current_user.full_name %></h5></a>
+  </div>
+  <ul class="list-unstyled components mb-5">
     <li>
-      <a href="/dashboard/profile">Profile</a>
+      <a href="/dashboard/profile"><i class="icon-sidebar fas fa-house-user mr-3"></i></i>Profile</a>
     </li>
     <li>
-      <a href="/dashboard/wishlist">Wishlist</a>
+      <a href="/dashboard/wishlist"><i class="icon-sidebar fas fa-heart mr-3"></i>Wishlist</a>
     </li>
     <li>
-      <a href="/cart">Cart</a>
+      <a href="/cart"><i class="icon-sidebar fas fa-shopping-cart mr-3"></i>Cart</a>
     </li>
     <% #if current_user.seller_approved == true %>
     <li>
-      <a href="/chatrooms">Messages</a>
+      <a href="/chatrooms"><i class="icon-sidebar fas fa-comment mr-3"></i>Messages</a>
     </li>
     <li>
-      <a href="/dashboard/listings">Listings</a>
+      <a href="/dashboard/listings"><i class="icon-sidebar fas fa-folder-open mr-3"></i>Listings</a>
     </li>
     <% #end %>
 </ul>

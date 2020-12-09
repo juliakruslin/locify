@@ -38,6 +38,21 @@ color: green;
 height: 20px;
 }
 
+.subcategory-check {
+  background-color: #a8475e;
+  opacity: 0.7;
+  padding-left: 5px;
+  border-radius: 10px;
+  min-width: 80px;
+}
+
+.subcategory-text label {
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+  }
+
 .delivery-otions-filter {
     background-color: #A8475E;
   border: none;

@@ -31,29 +31,23 @@
               </div>
             </div>
           </div>
-
+          
           <div class="">
-        <%= select_tag "delivery_option", options_for_select(["Pick-up", "Postal Delivery", "Instant Bike Delivery"], params[:delivery_option]), class: "delivery-otions-filter" %>
+            <%= select_tag "delivery_option", options_for_select(["Pick-up", "Postal Delivery", "Instant Bike Delivery"], params[:delivery_option]), class: "delivery-otions-filter" %>
           </div>
-      <!--     <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Delivery Options
-           </button>
-           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Pick-up</a>
-            <a class="dropdown-item" href="#">Postal Delivery</a>
-            <a class="dropdown-item" href="#">Instant Bike Delivery</a>
-          </div>
-        </div> -->
+            
+            <div class="category-filter mt-4">
+            <% if params[:category].present? %>
+            <% category = Category.find_by_name(params[:category]) %>
+            <% category.subcategories.each_with_index do |subcategory, index| %>
+            <div class="form-check form-check-inline">
+              <div class= "subcategory-check d-flex align-items-center">
+                <%= check_box_tag "subcategories[]", subcategory.id %>
+              <div class="subcategory-text">
+                <%= label_tag subcategory.name %>
+                </div>
+              </div>
 
-        <div class="category-filter mt-4">
-          <% if params[:category].present? %>
-          <% category = Category.find_by_name(params[:category]) %>
-          <% category.subcategories.each_with_index do |subcategory, index| %>
-          <div class="form-check form-check-inline">
-            <div class= "align-items-center">
-              <%= check_box_tag "subcategories[]", subcategory.id %>
-              <%= label_tag "subcategory_", subcategory.name %>
             </div>
           </div>
           <% end %>
@@ -61,8 +55,6 @@
         </div>
       </div>
       <% end %>
-
-
 
       <div class="product-cards mt-4">
         <h1 class="mb-2"><strong>Our products</strong></h1>
