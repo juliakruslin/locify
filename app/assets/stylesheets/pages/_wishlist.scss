@@ -89,11 +89,6 @@
   }
 }
 
-.add-to-cart-button {
-  margin: 20px;
-  padding: 20px;
-}
-
 .wishlist-item-delete {
   margin: 20px;
   padding: 20px;
@@ -102,7 +97,10 @@
 
 .fas.fa-cart-plus {
   font-size: 18px;
+  margin-right: 10px;
   color: #a8475e;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
 }
 
