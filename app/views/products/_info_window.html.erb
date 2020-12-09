@@ -9,7 +9,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <% if user.products.first.photos.attached? %>
-         <%= cl_image_tag user.products.first.photos.first.key %>
+         <%= cl_image_tag user.products.first.photos.first.key, class: "window-pic" %>
          <% else %>
          hello
       <% end %>
@@ -21,7 +21,7 @@
     <% user.products.each do |product| %>
     <div class="carousel-item">
       <% if product.photos.attached? %>
-        <%= cl_image_tag product.photos.first.key %>
+        <%= cl_image_tag product.photos.first.key, class: "window-pic" %>
       <% else %>
          hello
       <% end %>
