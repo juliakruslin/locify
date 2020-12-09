@@ -9,9 +9,28 @@
 }
 
 .input-group {
-  max-width: 120px;
-  margin-right: 5px;
-  height: 20px;
+  max-width: 90px;
+  // margin-right: 5px;
+    // margin-top: 20px;
+}
+
+.max-price input {
+  max-height: 30px;
+  border-top-right-radius: 19px;
+  border-bottom-right-radius: 20px;
+  width: 40px;
+  font-size: 10px;
+    margin-right: 10px;
+}
+
+.min-price input {
+  max-height: 30px;
+  width: 40px;
+  font-size: 10px;
+}
+
+.input-group-prepend {
+  max-height: 30px;
 }
 
 .euro-sign {
@@ -29,13 +48,18 @@ input[type=button] {
   margin: 4px 2px;
   cursor: pointer;
   font-size: 15px;
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.price-search {
-color: green;
-height: 20px;
+.price-filter {
+  margin-top: 20px;
+}
+
+
+.del-option {
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .subcategory-check {
@@ -62,7 +86,36 @@ height: 20px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
-  font-size: 15px;
-  margin-top: 20px;
+  font-size: 10px;
+  // margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.checkbox-category {
+position: absolute;
+transform: scale(0);
+}
+
+.checkbox-category + label {
+ cursor: pointer;
+  display: inline-block;
+  font-size: 10px;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: rgba(#A8475E, 0.1);
+  color: #A8475E;
+  border: 1px solid #A8475E;
+  // margin-right: 10px;
+  margin-bottom: 0.4rem;
+}
+
+.checkbox-category:checked + label {
+  background-color: #A8475E;
+  color: white;
+}
+
+.category-filter {
+margin-top: 20px;
+margin-right: 0px;
+margin-left: 0px;
 }

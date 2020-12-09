@@ -8,30 +8,31 @@
         <%= hidden_field_tag :category, params[:category] %>
         <%= hidden_field_tag :delivery_option, params[:delivery_option] %>
         <div class="filters d-flex justify-content-between">
-          <div class="price-filter">
-            <input type="button" name="answer" value="Filter for price" onclick="showFilter()" />
-            <div id="show-price-filter" style="display:none;">
-              <div class="price-filter d-flex">
-                <div class="input-group price mb-3">
-                  <div class="input-group-prepend price">
-                    <span class="input-group-text euro-sign">€</span>
+          <div class="filters d-flex ">
+            <div class="price-filter">
+              <h6 class="mb-0">Price</h6>
+            <!-- <input type="button" name="answer" value="Filter for price" onclick="showFilter()" />
+              <div id="show-price-filter" style="display:none;"> -->
+                <div class="price-filter mt-1 d-flex">
+                  <div class="input-group min-price price mb-3">
+                    <div class="input-group-prepend price">
+                      <span class="input-group-text euro-sign">€</span>
+                    </div>
+                    <input type="number" min=0 name="min_price" id="min_price" class="form-control" placeholder="Min">
                   </div>
-                  <input type="number" min=0 name="min_price" id="min_price" class="form-control" placeholder="Min">
+                  <div class="input-group max-price mb-3">
+                    <input type="number" min=0 name="max_price" id="max_price" class="form-control" placeholder="Max">
+                  </div>
+                  <div>
+                  </div>
                 </div>
-                <div class="input-group mb-3">
-                  <input type="number" min=0 name="max_price" id="max_price" class="form-control" placeholder="Max">
-                </div>
-                <div>
-                  <%= button_tag(type: "submit", class: "btn btn-default") do %>
-                  <i class="fas fa-search"></i>
-                  <% end %>
-                </div>
+                <!-- </div> -->
+              </div>
+              <div class="del-option">
+                <h6 class="mb-0">Delivery Options</h6>
+                <%= select_tag "delivery_option", options_for_select(["Pick-up", "Postal Delivery", "Instant Bike Delivery"], params[:delivery_option]), class: "delivery-otions-filter" %>
               </div>
             </div>
-          </div>
-          <div class="">
-        <%= select_tag "delivery_option", options_for_select(["Pick-up", "Postal Delivery", "Instant Bike Delivery"], params[:delivery_option]), class: "delivery-otions-filter" %>
-          </div>
       <!--     <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              Delivery Options
@@ -42,49 +43,53 @@
             <a class="dropdown-item" href="#">Instant Bike Delivery</a>
           </div>
         </div> -->
-        <div class="category-filter mt-4">
+        <div class="category-filter">
+          <h6 class="mb-0">Subcategories</h6>
           <% if params[:category].present? %>
           <% category = Category.find_by_name(params[:category]) %>
           <% category.subcategories.each_with_index do |subcategory, index| %>
           <div class="form-check form-check-inline">
             <div class= "align-items-center">
-              <%= check_box_tag "subcategories[]", subcategory.id, nil, id: "subcategories_#{subcategory.id}" %>
+              <%= check_box_tag "subcategories[]", subcategory.id, nil, id: "subcategories_#{subcategory.id}", class: "checkbox-category" %>
               <%= label_tag "subcategories_#{subcategory.id}", subcategory.name %>
             </div>
           </div>
           <% end %>
+          <% end %>
+          <%= button_tag(type: "submit", class: "btn btn-default") do %>
+          <i class="fas fa-search"></i>
           <% end %>
         </div>
       </div>
       <% end %>
       <div class="product-cards mt-4">
         <h1 class="mb-2"><strong>Our products</strong></h1>
-          <% @products.each do |product| %>
-          <div class="card-product m-2">
-            <%= cl_image_tag product.photos.first.key if product.photos.attached? %>
-            <div class="card-product-infos">
-              <h2><%= link_to product.name, product_path(product) %></h2>
-              <p> EUR <%= product.price %></p>
-            </div>
+        <% @products.each do |product| %>
+        <div class="card-product m-2">
+          <%= cl_image_tag product.photos.first.key if product.photos.attached? %>
+          <div class="card-product-infos">
+            <h2><%= link_to product.name, product_path(product) %></h2>
+            <p> EUR <%= product.price %></p>
           </div>
-          <% end %>
         </div>
-      </div>
-      <div class="map col-4">
-        <div id="map"
-        style="width: 100%; height: 100vh;"
-        data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        <% end %>
       </div>
     </div>
+    <div class="map col-4">
+      <div id="map"
+      style="width: 100%; height: 100vh;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
   </div>
-  <!-- </div> -->
-          <script>
-            function showFilter() {
-             var x = document.getElementById("show-price-filter");
-             if (x.style.display === "none") {
-              x.style.display = "block";
-            } else {
-              x.style.display = "none";
-            }       }
-          </script>
+</div>
+<!-- </div> -->
+<script>
+  function showFilter() {
+   var x = document.getElementById("show-price-filter");
+   if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }       }
+</script>
