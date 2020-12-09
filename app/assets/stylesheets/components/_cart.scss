@@ -54,11 +54,13 @@
 .cart-item-amount-up {
   background-color: lightgray;
   padding: 5px 10px;
+  font-size: 14px;
 }
 
 .cart-item-amount-down {
   background-color: lightgray;
   padding: 5px 10px;
+  font-size: 14px;
 }
 
 .cart-item-price {
@@ -72,10 +74,10 @@
   justify-content: flex-end;
 }
 
-.first-line {
-  justify-content: space-between;
-  margin-top: 10px;
-}
+// .first-line {
+//   justify-content: space-between;
+//   margin-top: 10px;
+// }
 
 .fas.fa-trash {
   color: #a8475e;

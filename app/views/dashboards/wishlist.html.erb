@@ -9,27 +9,27 @@
         <h3> <%= current_user.first_name %>'s wishlist</h3>
         <p>You have <strong><%= current_user.wishlist_products.count %> product</strong> in your wishlist. </p></div>
 
-        <div class="wishlist-body space-between">
+        <div class="wishlist-body">
           <% current_user.wishlist_products.each do |product| %>
           <div class="wishlist-item border-bottom" >
             <div class="d-flex align-items-center text-left text-md-center row">
-              <div class="wishlist-item-img">
+              <div class="wishlist-item-img col-2">
                 <!-- TODO: link to single product has to be fixed -->
                 <!-- TODO: perhaps fix reloading of page with javascript -->
                 <%= link_to product_path(product), class: "card-link" do %>
                 <%= cl_image_tag product.photos.first.key%>
               </div>
-              <div class="wishlist-item-title text-left m-3" style="width: 300px">
+              <div class="wishlist-item-title text-left col-2">
                 <%= product.name %>
               </div>
               <% end %>
-              <div class="wishlist-item-info d-flex align-items-center row">
-                <div class="wishlist-item-single-price d-flex align-items-center text-right m-3">
+              <div class="wishlist-item-info d-flex align-items-centercol-8">
+                <div class="wishlist-item-single-price d-flex col-1">
                   € <%= product.price.round%>
                 </div>
-
+                <div class="wishlist-item-delivery-option">
                 <%= product.delivery_options.sample.name %>
-
+                </div>
                 <div class="add-to-cart-button">
                   <%= link_to add_to_cart_path(product), method: :post do %>
                   <i class="fas fa-cart-plus"></i>
