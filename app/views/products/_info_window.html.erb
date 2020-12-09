@@ -8,14 +8,23 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <%= cl_image_tag user.products.first.photos.first.key %>
+      <% if user.products.first.photos.attached? %>
+         <%= cl_image_tag user.products.first.photos.first.key %>
+         <% else %>
+         hello
+      <% end %>
+
       <div class="carousel-caption d-none d-md-block">
         <h5> <%= link_to user.products.first.name, product_path(user.products.first), class: "product-marker-name" %></h5>
       </div>
     </div>
     <% user.products.each do |product| %>
     <div class="carousel-item">
-      <%= cl_image_tag product.photos.first.key %>
+      <% if product.photos.attached? %>
+        <%= cl_image_tag product.photos.first.key %>
+      <% else %>
+         hello
+      <% end %>
       <div class="carousel-caption d-none d-md-block">
         <h5> <%= link_to product.name, product_path(product), class: "product-marker-name" %></h5>
       </div>
@@ -40,6 +49,6 @@
 <!-- </div> -->
 
 
+<%= link_to "See all #{user.products.count} products", store_path(user) %>
 
-<a href="#" id="marker-products-view">See all <%= user.products.count %> products</a>
 

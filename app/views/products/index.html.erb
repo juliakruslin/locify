@@ -52,8 +52,8 @@
           <% category.subcategories.each_with_index do |subcategory, index| %>
           <div class="form-check form-check-inline">
             <div class= "align-items-center">
-              <%= check_box_tag "subcategories[]", subcategory.id %>
-              <%= label_tag "subcategory_", subcategory.name %>
+              <%= check_box_tag "subcategories[]", subcategory.id, nil, id: "subcategories_#{subcategory.id}" %>
+              <%= label_tag "subcategories_#{subcategory.id}", subcategory.name %>
             </div>
           </div>
           <% end %>

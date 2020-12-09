@@ -9,7 +9,11 @@
       </div>
       <div class="photos">
         <% @product.photos.first(5).each do |photo| %>
-        <%= cl_image_tag photo.key %>
+        <% if @product.photos.attached? %>
+          <%= cl_image_tag photo.key %>
+        <% else %>
+          hi
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -83,7 +87,7 @@
       <div class="bottom-showpage d-flex">
         <div id="map"
         style="width: 480px; height: 190px;"
-        data-markers="<%= @markers.to_json %>"
+        data-markers="<%= @marker.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       </div>
       <div class="product-category">
@@ -93,7 +97,6 @@
             <%= @product.subcategory.name %></div></div>
           </div>
         </div>
-
 
 <!-- <div class="delivery-options d-flex justify-content-between mb-2">
   <% @product.delivery_options.each do |delivery_option|%>

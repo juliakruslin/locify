@@ -25,6 +25,8 @@ class User < ApplicationRecord
   # validates :first_name, presence: true
   # validates :last_name, presence: true
 
+  scope :seller, -> { where(id: Product.pluck(:user_id).uniq) }
+
   def full_address
     "#{street_name}, #{street_number}, #{city}, #{postal_code}"
   end
