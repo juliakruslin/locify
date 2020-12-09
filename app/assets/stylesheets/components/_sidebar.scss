@@ -1,0 +1,41 @@
+.list-unstyled.components {
+  background-color: rgba(240, 236, 230, 1);
+  min-height: 50vh;
+  li {
+    padding: 10px 5px 10px 15px;
+    border-bottom: 1px solid white;
+  }
+
+  // .active li:hover {
+  //   color: red;
+  // }
+  a {
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.icon-sidebar {
+  min-width: 25px;
+  color: #a8475e;
+  font-size: 18px;
+  margin: 3px;
+}
+.background-img {
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("background-profile.jpg");
+  height: 130px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.avatar.sidebar {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 3px;
+}
+
+.sidebar-name {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
