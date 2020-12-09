@@ -18,7 +18,6 @@
       <p class="mb-1"><strong> Sold by </strong><%= link_to @product.user.full_name, store_path(@product.user) %></p>
       <h2 class="mb-1"><strong><%= @product.name %></strong></h2>
       <h6 class="mb-1"><%= @product.price %> € </h6>
-      <h6 class="mb-1"><%= @product.delivery_options.sample.name %> € </h6>
       <% sum = 0 %>
       <% @product.reviews.each do |review|%>
       <% sum += review.stars %>
@@ -44,21 +43,41 @@
       <p>Seller has no reviews yet.</p>
       <% end %>
 
-      <% if @product_in_wishlist  %>
-        <%= link_to delete_from_wishlist_path(@product), method: :delete do %>
-          <i class="fas fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= link_to add_to_wishlist_path(@product), method: :post do %>
-          <i class="far fa-heart"></i>
-        <% end %>
-      <% end %>
 
-      <div class="add-to-cart-button">
+
+      <div class="mt-1">
+        <button class="delivery-options dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Delivery Options
+        </button>
+        <div class="dropdown-menu delivery-dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% @product.delivery_options.each do |delivery_option| %>
+          <a class="dropdown-item delivery-dropdown-item" href="#"><strong><%= delivery_option.name %>:</strong> <%= delivery_option.price %> €</a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="add-to-cart-button mt-2">
         <%= link_to add_to_cart_path(@product), method: :post do %>
-          <i class="fas fa-cart-plus"></i>
+        <button>Add to cart</button>
         <% end %>
       </div>
+
+
+      <div class="wishlist-button mt-2">
+        <div class="button">
+          <% if @product_in_wishlist  %>
+          <%= link_to delete_from_wishlist_path(@product), method: :delete do %>
+          <button><i class="far fa-heart"></i> Remove from wishlist </button>
+          <% end %>
+          <% else %>
+          <%= link_to add_to_wishlist_path(@product), method: :post do %>
+          <button><i class="far fa-heart"></i> Add to wishlist </button>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+
+ <hr class="mt-5">
 
       <div class="location mb-1"><i class="fas fa-map-marker-alt"></i> <%= @product.user.street_name %> <%= @product.user.street_number %>, <%= @product.user.city %></div>
       <div class="bottom-showpage d-flex">
@@ -66,14 +85,14 @@
         style="width: 480px; height: 190px;"
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-    </div>
-    <div class="product-category">
-      <div class="product-category-design">
-      <%= @product.category.name %></div>
-      <div class="product-subcategory-design">
-        <%= @product.subcategory.name %></div></div>
-  </div>
-</div>
+      </div>
+      <div class="product-category">
+        <div class="product-category-design">
+          <%= @product.category.name %></div>
+          <div class="product-subcategory-design">
+            <%= @product.subcategory.name %></div></div>
+          </div>
+        </div>
 
 
 <!-- <div class="delivery-options d-flex justify-content-between mb-2">
@@ -167,5 +186,6 @@
       </div>
     </div>
   </div>
+
 
   <!-- </div> -->

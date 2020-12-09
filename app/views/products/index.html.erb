@@ -3,50 +3,64 @@
     <div class="row ml-2">
       <div class="col-8">
 
-          <%= form_tag products_path, method: :get do %>
-          <%= hidden_field_tag :query, params[:query] %>
-          <%= hidden_field_tag :location, params[:location] %>
-          <%= hidden_field_tag :category, params[:category] %>
+        <%= form_tag products_path, method: :get do %>
+        <%= hidden_field_tag :query, params[:query] %>
+        <%= hidden_field_tag :location, params[:location] %>
+        <%= hidden_field_tag :category, params[:category] %>
+        <%= hidden_field_tag :delivery_option, params[:delivery_option] %>
 
         <div class="filters d-flex justify-content-between">
           <div class="price-filter">
-          <input type="button" name="answer" value="Filter for price" onclick="showFilter()" />
-          <div id="show-price-filter" style="display:none;">
-            <div class="price-filter d-flex">
-              <div class="input-group price mb-3">
-                <div class="input-group-prepend price">
-                  <span class="input-group-text euro-sign">€</span>
+            <input type="button" name="answer" value="Filter for price" onclick="showFilter()" />
+            <div id="show-price-filter" style="display:none;">
+              <div class="price-filter d-flex">
+                <div class="input-group price mb-3">
+                  <div class="input-group-prepend price">
+                    <span class="input-group-text euro-sign">€</span>
+                  </div>
+                  <input type="number" min=0 name="min_price" id="min_price" class="form-control" placeholder="Min">
                 </div>
-                <input type="number" min=0 name="min_price" id="min_price" class="form-control" placeholder="Min">
+                <div class="input-group mb-3">
+                  <input type="number" min=0 name="max_price" id="max_price" class="form-control" placeholder="Max">
+                </div>
+                <div>
+                  <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                  <i class="fas fa-search"></i>
+                  <% end %>
+                </div>
               </div>
-              <div class="input-group mb-3">
-              <input type="number" min=0 name="max_price" id="max_price" class="form-control" placeholder="Max">
-            </div>
-            <div>
-              <%= button_tag(type: "submit", class: "btn btn-default") do %>
-              <i class="fas fa-search"></i>
-              <% end %>
-              <% end %>
             </div>
           </div>
+
+          <div class="">
+        <%= select_tag "delivery_option", options_for_select(["Pick-up", "Postal Delivery", "Instant Bike Delivery"], params[:delivery_option]), class: "delivery-otions-filter" %>
+          </div>
+      <!--     <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Delivery Options
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Pick-up</a>
+            <a class="dropdown-item" href="#">Postal Delivery</a>
+            <a class="dropdown-item" href="#">Instant Bike Delivery</a>
+          </div>
+        </div> -->
+
+        <div class="category-filter mt-4">
+          <% if params[:category].present? %>
+          <% category = Category.find_by_name(params[:category]) %>
+          <% category.subcategories.each_with_index do |subcategory, index| %>
+          <div class="form-check form-check-inline">
+            <div class= "align-items-center">
+              <%= check_box_tag "subcategories[]", subcategory.id %>
+              <%= label_tag "subcategory_", subcategory.name %>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
         </div>
       </div>
-
-          <div class="category-filter mt-4">
-            <% if params[:category].present? %>
-            <% category = Category.find_by_name(params[:category]) %>
-            <% category.subcategories.each_with_index do |subcategory, index| %>
-            <div class="form-check form-check-inline">
-              <div class= "align-items-center">
-                <%= check_box_tag "subcategories[]", subcategory.id %>
-                <%= label_tag subcategory.name %>
-              </div>
-            </div>
-            <% end %>
-            <% end %>
-          </div>
-      </div>
-
+      <% end %>
 
 
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get 'profile'
       get 'orders'
       get 'wishlist'
+      get 'listings'
     end
   end
 
