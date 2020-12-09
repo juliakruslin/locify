@@ -1,11 +1,12 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row mt-5">
     <div class="col-2">
-      <%= render "sidebar" %>
+      <%#= render "sidebar" %>
     </div>
-    
+     -->
 <div class="row">
-  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %> </div>
+  <div class="col-2"><%= render 'dashboards/sidebar' %></div>
+  <div class="col-3"><%= render 'list', chatrooms: @chatrooms, store_chatrooms: @store_chatrooms %></div>
   <div class="col-6 message-area">
     <div class="message-area-text">
       <% if current_user.first_name != @chatroom.store.first_name %>
@@ -37,5 +38,5 @@
           <% end %>
         </div>
       </div>
-      <div class="col-3"></div>
+      <div class="col-1"></div>
     </div>
