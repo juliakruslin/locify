@@ -44,8 +44,8 @@
           </div>
         </div> -->
         <div class="category-filter">
-          <h6 class="mb-0">Subcategories</h6>
           <% if params[:category].present? %>
+          <h6 class="mb-0">Subcategories</h6>
           <% category = Category.find_by_name(params[:category]) %>
           <% category.subcategories.each_with_index do |subcategory, index| %>
           <div class="form-check form-check-inline">
