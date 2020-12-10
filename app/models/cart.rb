@@ -2,6 +2,7 @@ class Cart < ApplicationRecord
   belongs_to :user
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
   monetize :price_cents
 
   after_touch :calculate_total_price

@@ -54,8 +54,9 @@ class ProductsController < ApplicationController
       infoWindow: render_to_string(partial: "info_window", locals: { user: @user }),
       image_url: helpers.asset_url('shop_marker.png')
     }]
-
-    @product_in_wishlist = current_user.wishlist_products.any? { |product| product == @product }
+    if user_signed_in?
+      @product_in_wishlist = current_user.wishlist_products.any? { |product| product == @product }
+    end
   end
 
   def edit
@@ -108,7 +109,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to wishlist_dashboard_path
   end
 
   private
