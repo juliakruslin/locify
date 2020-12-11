@@ -19,7 +19,7 @@
     </div>
 
     <div class="product-description col-4">
-      <p class="mb-1"><strong> Sold by </strong><%= link_to @product.user.full_name, store_path(@product.user) %></p>
+      <p class="mb-1"><strong> Sold by </strong><%= link_to @product.user.full_name, store_path(@product.user), :target => "_blank" %></p>
       <h2 class="mb-1"><strong><%= @product.name %></strong></h2>
       <h6 class="mb-1"><%= @product.price %> € </h6>
       <% sum = 0 %>
