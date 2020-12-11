@@ -12,6 +12,8 @@
     <div class="seller-info d-flex justify-content-center mt-5">
       <% if @store.avatar.attached? %>
       <div class="seller-picture mr-4 "> <%= cl_image_tag @store.avatar.key, alt: "profilepic", class: "seller-picture" %></div>
+      <% else %>
+      <%= image_tag "umbrellashop.jpg", width:300,  height: 200, alt: "alttext" %>
       <% end %>
       <div class="top-level-info">
         <div><h3><%= @store.full_name  %></h3></div>
@@ -38,22 +40,14 @@
     </div>
     <div class="seller-detailed-info">
       <h3 class="mt-5">Who we are</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore commodi, fugiat animi illum possimus, magnam, quidem voluptatem distinctio modi odio illo fugit suscipit quasi harum architecto dolorem sint, aspernatur repudiandae consequatur velit provident culpa quia a aut reprehenderit? Ad cumque officia debitis pariatur accusantium, eum alias, quis quae praesentium asperiores.</p>
-      <h3 class="mt-5">Get to know our store</h3>
-      <%= image_tag "shopowner.jpg", width: "400px", height: "250px", class: "store-pics" %>
-      <h3 class="mt-5">Our products are ...</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, quia. Fugit, provident ipsa, recusandae deserunt a fuga quae quasi, ducimus ab eveniet obcaecati delectus. Explicabo necessitatibus assumenda suscipit neque quod.</p>
+      <p>We offer high quality umbrellas that fit to every outfit. We are always happy when our customers are happy. Just like our customers, we don't want the low prices of our products to come at a high price elsewhere. We do not own factories or workshops of our own, but our suppliers are our partners, and each and every one of them has pledged to follow the specifications of our code of conduct.
+</p>
+      <h3 class="mt-5">Our contribution to the environment</h3>
+      <p class="mb-5">To us, assuming corporate responsibility includes a respectful approach to resources and the natural world. Our collections change rapidly. That makes it all the more important to ensure that everything we do as a company is geared toward long-term sustainability, including – and especially – when it comes to the environment. We have already banned PVC from all of our products and packaging. For our products we have committed to reduce CO2emissions. And whatever "leftovers" there may be are neutralized through reforestation.</p>
+
       <!--<p><strong>Favorite product: </strong> <%= link_to @store.products.first.name, product_path(@store.products.first) %></p> -->
       <% @store.products.each do |product| %>
-      <%= link_to product_path(product), class: "card-link" do %>
-      <div class="card-product">
-        <%= cl_image_tag product.photos.first.key%>
-        <div class="card-product-infos">
-          <h2><%= product.name %></h2>
-          <p> EUR <%= product.price %></p>
-        </div>
-      </div>
-      <% end %>
+      <%= render partial: "products/card", locals: { product: product } %>
       <% end %>
     </div>
 </div>
