@@ -29,6 +29,17 @@ class Product < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+    def average_reviews
+    sum = 0
+      self.reviews.each do |review|
+        sum += review.stars
+      end
+    review_sum = self.reviews.count
+    sum
+    @average_rating = sum/review_sum.to_f
+    @average_rating.round(1)
+  end
+
     # def subcategory_part_of_category
     #   errors.add(:category, "subcategory not part of category") unless subcategory.category == category
     # end

@@ -48,7 +48,8 @@
 <!-- <p class="marker-products"> <%#= link_to "See all #{user.products.count} products"%> </p> -->
 <!-- </div> -->
 
-
-<%= link_to "See all #{user.products.count} products", store_path(user) %>
+<div class="store-link">
+  <%= link_to "See all #{user.products.count} products of #{user.first_name}", store_path(user) %>
+</div>
 
 

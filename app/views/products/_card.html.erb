@@ -1,7 +1,26 @@
 <div class="card-product m-2">
+  <%= link_to product_path(product) do %>
   <%= cl_image_tag product.photos.first.key if product.photos.attached? %>
   <div class="card-product-infos">
-    <h2><%= link_to product.name, product_path(product) %></h2>
+    <h2><%=product.name %></h2>
     <p> EUR <%= product.price %></p>
+    <hr>
+    <p> Sold by: <%= link_to product.user.full_name, store_path(product.user) %></p>
+    <% product.average_reviews %>
+
+
+    <% if product.reviews.count > 0  %>
+    <div class="stars d-flex align-items-center pt-2">
+      <% 5.times do |num| %>
+      <i class="fa<%=product.average_reviews.round < num + 1 ? 'r' : 's' %> fa-star"></i>
+      <% end %>
+      <div>
+        <p class="ml-2">(<%= product.average_reviews %>)</p>
+      </div>
+    </div>
+    <% else %>
+    <p>No reviews</p>
+    <% end %>
   </div>
+  <% end %>
 </div>
