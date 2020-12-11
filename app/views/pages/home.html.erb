@@ -1,18 +1,18 @@
 <div class="the-home-page">
-  <div class="first-section">
+  <!-- <div class="first-section"> -->
     <div class="home_video">
       <%= video_tag "ronaldreiter.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, class: "home_video" %>
     </div>
     <div class="banner-title">
       <h1>Your marketplace for local products</h1>
       <p>Support local sellers around you and make your shopping behaviour more sustainable</p>
-      <%= link_to "Become a seller", new_product_path, class: "btn btn-secondary" %>
+      <% link_to "Become a seller", new_product_path, class: "btn btn-secondary" %>
     </div>
 
     <div class="container d-flex flex-column justify-content-center ">
       <!-- product search field -->
       <%= form_tag products_path, method: :get do %>
-      <div class="searchbar mt-5 d-flex align-items-center justify-content-center">
+      <div class="searchbar">
         <div class="products-search">
 
 
@@ -40,8 +40,8 @@
             <a href="#">Find products around me <i class="fas fa-location-arrow"></i></a>
           </div> -->
         </div>
-      </div>
-      <div class="second-section">
+        <!-- </div> -->
+     <!--  <div class="second-section">
       </div>
       <div class="our-usps">
         <div class="our-usp-item">
@@ -58,3 +58,4 @@
         </div>
       </div>
     </div>
+  -->

@@ -1,0 +1,7 @@
+<div class="card-product m-2">
+  <%= cl_image_tag product.photos.first.key if product.photos.attached? %>
+  <div class="card-product-infos">
+    <h2><%= link_to product.name, product_path(product) %></h2>
+    <p> EUR <%= product.price %></p>
+  </div>
+</div>
