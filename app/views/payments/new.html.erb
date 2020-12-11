@@ -3,13 +3,74 @@
     <!-- <div class="col-md-3"><%#= image_tag @order.teddy.photo_url, width: '100%' %></div> -->
     <div class="col">
       <h1>Checkout summary</h1>
-      <p>Purchase of:<strong>
-        <% @order.cart.cart_items.each do |cart_item| %>
-        <%= cart_item.product.name %>
-        <% end %>
+<!--       <p>Purchase of:<strong>
+        <%# @order.cart.cart_items.each do |cart_item| %>
+        <%#= cart_item.product.name %>
+        <%# end %> -->
+      <div class="cart-body">
+        <% @order.cart.cart_items.each do |cart_item|%>
+        <div class="cart-item border-bottom" >
+          <div class="d-flex align-items-center text-md-center row" id="cart-item-<%=cart_item.id%>">
+            <div class="cart-item-img col-2">
+              <!-- TODO: link to single product has to be fixed -->
+              <%= link_to products_path(@product) do %>
+              <%= cl_image_tag cart_item.product.photos.first.key if cart_item.product.photos.attached?%>
+              <% end %>
+            </div>
+            <div class="cart-item-title text-left col-2">
+              <%= cart_item.product.name %>
+            </div>
+            <div class="cart-item-info d-flex align-items-center col-8">
+              <div class="cart-item-single-price d-flex col-1">
+                € <%= cart_item.product.price.round%>
+              </div>
+              <div class="cart-item-delivery-option d-flex align-items-center col-2">
+                <%#= cart_item.product.delivery_options.sample.name%>
+                <!-- Fake for presentation -->
+                Instant Bike Delivery
+              </div>
+              <div class="cart-item-complete-amount d-flex align-items-center col-3">
+               <div class="cart-item-amount-down border">
+                <%=  link_to decrease_amount_path(cart_item), method: :post, remote: true do %>
+                <%= image_tag "icons/arrow_down.svg", alt: "arrowdown", class:"arrow-icon" %>
+                <% end %>
+              </div>
+              <div class="cart-item-amount border">
+                <%= cart_item.amount %>
+              </div>
+              <div class="cart-item-amount-up border">
+                <%=  link_to increase_amount_path(cart_item), method: :post, remote: true do %>
+                <%= image_tag "icons/arrow_up.svg", alt: "arrowup", class:"arrow-icon" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="cart-item-price d-flex align-items-center col-1">
+              € <%= cart_item.price.round%>
+            </div>
+            <div class="cart-item-delete d-flex align-items-center col-1" id="trash">
+              <%= link_to cart_item_path(cart_item), method: :delete, data: { confirm: "Are you sure you want to delete this product?" } do %>
+              <i class="fas fa-times"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
 
-      </strong> for <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-      <button id="pay" class="btn btn-primary">Pay</button>
+    <div class="bottom-line d-flex justify-content-between align-items-center">
+      <div class="">
+        <h6><strong>Total order price: </strong></h6>
+      </div>
+      <div class="bottom-checkout-right d-flex align-items-center">
+        <h6 class="total-price-db"><strong> <%= humanized_money_with_symbol(@order.amount) %></h6></strong>
+        <div class="order-btn ml-5">
+          <button id="pay" class="btn btn-dark order-btn">Pay</button>
+        </div>
+      </div>
+    </div>
+
+      <!-- </strong> for <strong><%= humanized_money_with_symbol @order.amount %></strong></p> -->
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         const paymentButton = document.getElementById('pay');
@@ -23,3 +84,5 @@
     </div>
   </div>
 </div>
+
+

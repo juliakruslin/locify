@@ -378,6 +378,31 @@ end
     file_5 = File.open("db/images/plasticumbrella5.jpg")
     umbrella_4.photos.attach(io: file_5, filename: 'nes.png', content_type: 'image/png')
 
+    Review.create!(
+        product: umbrella_4,
+        user: User.all.shuffle.first,
+        stars: 5,
+        description: "This is the best umbrella I have ever bought in my life."
+        )
+      Review.create!(
+        product: umbrella_4,
+        user: User.all.shuffle.first,
+        stars: 5,
+        description: "This umbrella changed my life, finally, I don't run into walls anymore."
+        )
+      Review.create!(
+        product: umbrella_4,
+        user: User.all.shuffle.first,
+        stars: 5,
+        description: "I gave them to my girlfriend as a present and she loved it!"
+        )
+      Review.create!(
+        product: umbrella_4,
+        user: User.all.shuffle.first,
+        stars: 5,
+        description: "Bought it 5 times already in case I lose one again!"
+        )
+
     # Product 15
     coat = Product.create(
     name: "Winter coat",
